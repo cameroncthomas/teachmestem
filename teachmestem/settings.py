@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    "django_bootstrap5",
     # Default apps.
     "django.contrib.admin",
     "django.contrib.auth",
