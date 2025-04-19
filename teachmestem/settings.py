@@ -33,6 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My apps.
     "revision",
+    # Third party apps.
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     # Default apps.
     "django.contrib.admin",
     "django.contrib.auth",
@@ -50,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "teachmestem.urls"
@@ -57,7 +63,9 @@ ROOT_URLCONF = "teachmestem.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -67,6 +75,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 WSGI_APPLICATION = "teachmestem.wsgi.application"
@@ -123,3 +136,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+ACCOUNT_SESSION_REMEMBER = True
