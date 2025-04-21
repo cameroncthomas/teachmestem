@@ -1,0 +1,56 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Sign Up" %}
+    {% endelement %}
+    {% setvar link %}
+        <a href="{{ login_url }}" 
+        class="link-offset-2 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-0-hover">
+        {% endsetvar %}
+        {% setvar end_link %}
+        </a>
+    {% endsetvar %}
+    
+    {% if not SOCIALACCOUNT_ONLY %}
+        {% url 'account_signup' as action_url %}
+        <div class="d-flex justify-content-center">
+            <div class="">
+                {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+                        {% slot body %}
+                            {% csrf_token %}
+                            {% element fields form=form unlabeled=True %}
+                            {% endelement %}
+                            {{ redirect_field }}
+                        {% endslot %}
+                        {% slot actions %}
+                            <div class="d-flex justify-content-center pt-3">
+                                {% element button tags="prominent,signup" type="submit" %}
+                                    {% trans "Sign Up" %}
+                                {% endelement %}
+                            </div>
+                        {% endslot %}
+                {% endelement %}
+            </div>
+        </div>
+    {% endif %}
+    
+    {% if PASSKEY_SIGNUP_ENABLED %}
+        {% element hr %}
+        {% endelement %}
+        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
+            {% trans "Sign up using a passkey" %}
+        {% endelement %}
+    {% endif %}
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    {% endif %}
+    <div class="d-flex justify-content-center mt-3 pt-3">
+        {% element p %}
+                {% blocktranslate %}Have an account? {{ link }}Sign in{{ end_link }}{% endblocktranslate %}
+        {% endelement %}
+    </div>
+{% endblock content %}

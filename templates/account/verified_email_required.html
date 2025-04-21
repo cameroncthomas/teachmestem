@@ -1,0 +1,22 @@
+{% extends "account/base_manage.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Verify your Email Address" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Verify your Email Address" %}
+    {% endelement %}
+    {% url 'account_email' as email_url %}
+    <div class="container d-flex justify-content-center">
+        {% element p %}
+            {% blocktrans %}To access this page, please verify your email by clicking on the link in the email we sent you.{% endblocktrans %}
+        {% endelement %}
+    </div>
+    <div class="container d-flex justify-content-center">
+        {% element p %}
+            {% blocktrans %}Note, the email may be in your spam folder.{% endblocktrans %}
+        {% endelement %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% load account %}
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <a class="d-flex justify-content-center navbar-brand" href="{% url 'revision:index' %}">
+                    <img 
+                        alt="Home Page - Teach Me STEM"
+                        src="{% static 'revision/logo3.svg' %}"
+                        width="135"
+                        height="50.76">
+                </a>
+                <p class="d-flex justify-content-center">
+                    {% autoescape off %}{% blocktrans with site_name=current_site.name %}{% endblocktrans %}
+                    {% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktranslate with site_name=current_site.name site_domain=current_site.domain %}Hello {{ user_display }}, please verify your email by clicking the link below.{% endblocktranslate %}
+                </p>
+                <p class="d-flex justify-content-center">
+                    {% if code %}{% blocktranslate %}Your email verification code is listed below. Please enter it in your open browser window.{% endblocktranslate %}
+                    
+                    {{ code }}{% else %}
+                    <a class="d-flex justify-content-center btn btn-primary btn-lg" href="{% blocktranslate %}{{ activate_url }}{% endblocktranslate %}">Verify email</a>
+                    {% endif %}{% endautoescape %}
+                </p>
+                {% endblock content %}
+                <p class="d-flex justify-content-center">
+                    {% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from the Teach Me STEM team.{% endblocktrans %}
+                </p>
+                {% endautoescape %}
+            </div>
+        </main>
+    </body>
+</html>

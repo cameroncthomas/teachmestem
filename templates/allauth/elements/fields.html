@@ -1,0 +1,5 @@
+{% load django_bootstrap5 %}
+
+{% for field in attrs.form %}
+    {% bootstrap_field field show_help=False show_label=False label_class="" size="md"%}
+{% endfor %}
