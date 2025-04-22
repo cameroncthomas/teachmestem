@@ -1,0 +1,14 @@
+<h6 id="pastpaper-completion-count" class="border-none d-flex justify-content-center mb-3 text-secondary-emphasis">
+    ( {{  num_pastpapers_completed  }} / {{  total_num_pastpapers  }} )
+</h6>
+<div class="d-flex justify-content-center">
+    <div 
+        class="progress border-bottom w-50" role="progressbar" aria-label="Pastpaper progress" aria-valuenow="{{  pastpaper_progress_percentage  }}" 
+        aria-valuemin="0" aria-valuemax="100" style="height: 12px">
+        {% if pastpaper_progress_percentage == 100 %}
+            <div id="pastpaper-progress-bar" class="progress-bar bg-success" style="width: {{ pastpaper_progress_percentage }}%"></div>
+        {% else %}
+            <div id="pastpaper-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ pastpaper_progress_percentage }}%"></div>
+        {% endif %}
+    </div>
+</div>

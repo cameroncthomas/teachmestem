@@ -1,0 +1,39 @@
+{% extends 'revision/base_examboard.html' %}
+{% load static %}
+{% block content_1 %}
+    {% block topics_maths_pure %}
+        <h3 id="pure-section" class="d-flex justify-content-center mt-4 mb-4">Pure</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">        
+            {% for topic in maths_pure_topics %}
+                {% include 'revision/snippets/topic_card.html' %}   
+            {% endfor %}
+        </div>
+    {% endblock topics_maths_pure %}
+
+    {% block topics_maths_statistics %}
+        <h3 class="d-flex justify-content-center mt-5 pt-3 mb-4">Statistics</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">        
+            {% for topic in maths_statistics_topics %}
+                {% include 'revision/snippets/topic_card.html' %}   
+            {% endfor %}
+        </div>
+    {% endblock topics_maths_statistics %}
+
+    {% block topics_maths_mechanics %}
+        <h3 class="d-flex justify-content-center mt-5 pt-3 mb-4">Mechanics</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">        
+            {% for topic in maths_mechanics_topics %}
+                {% include 'revision/snippets/topic_card.html' %}   
+            {% endfor %}
+        </div>
+    {% endblock topics_maths_mechanics %}
+
+    {% block pastpapers %}
+        <h1 id="pastpapers" class="mt-5 pt-5 d-flex justify-content-center">Past papers</h1>
+        <h5 class="border-none d-flex justify-content-center mt-3 mb-4">Choose from our wide selection of past exam papers.</h5>
+        <div class="my-5">
+            {% include 'revision/snippets/pastpaper_progress_bar.html' %}
+        </div>
+        {% include 'revision/snippets/pastpaper_table.html' %}
+    {% endblock pastpapers %}
+{% endblock content_1 %}

@@ -1,0 +1,53 @@
+{% extends 'revision/base.html' %}
+{% load i18n %}
+{% load allauth account %}
+{% load static %}
+{% block title %}
+    My Account ·
+{% endblock title %}
+{% comment %}
+    {% block breadcrumb %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a 
+                        href="#"
+                        hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">Home</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">My Account</li>
+            </ol>
+        </nav>
+    {% endblock breadcrumb %}
+{% endcomment %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">My Account</h1>
+    <!-- <h5 class="mb-4 d-flex justify-content-center text-secondary-emphasis">{{ user.username | title }}</h5> -->
+    <h5 class="mb-4 d-flex justify-content-center text-secondary-emphasis">{{ user.email }}</h5>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="d-flex justify-content-center">
+        {% if user.is_authenticated %}
+            {% url 'account_email' as email_url_ %}
+            {% if email_url_ %}
+                <a
+                    href="{{ email_url_ }}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">{% trans "Change Email" %}</a>   
+            {% endif %}
+            {% url 'account_change_password' as change_password_url_ %}
+            {% if change_password_url_ %}
+                <a 
+                    href="{{ change_password_url_ }}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">{% trans "Change Password" %}</a>   
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="d-flex justify-content-center my-4">
+        <form action="{% url 'account_logout' %}" method='post'>
+            {% csrf_token %}
+            <button name='submit' class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">
+                Log out
+            </button>
+        </form>
+    </div>
+{% endblock content_1 %}

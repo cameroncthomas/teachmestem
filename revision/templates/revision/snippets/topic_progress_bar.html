@@ -1,0 +1,21 @@
+<h6 
+    id="topic-completion-count" 
+    class="border-none d-flex justify-content-center mb-3 text-secondary-emphasis">
+    ( {{ num_topics_completed }} / {{ total_num_topics }} )
+</h6>
+<div class="d-flex justify-content-center">
+    <div 
+        class="progress border-bottom w-50" role="progressbar" aria-label="Topic progress" 
+        aria-valuenow="{{ topic_progress_percentage }}" aria-valuemin="0" aria-valuemax="100" style="height: 12px">
+        {% if topic_progress_percentage == 100 %}
+            <div 
+                id="topic-progress-bar" class="progress-bar bg-success" 
+                style="width: {{ topic_progress_percentage }}%"></div>
+        {% else %}
+            <div 
+                id="topic-progress-bar"
+                class="progress-bar progress-bar-striped progress-bar-animated" 
+                style="width: {{ topic_progress_percentage }}%"></div>
+        {% endif %}
+    </div>
+</div>

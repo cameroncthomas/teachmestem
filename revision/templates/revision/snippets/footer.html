@@ -1,0 +1,33 @@
+{% load static %}
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <!-- <p class="col-md-4 text-body-secondary">© 2025 Teach Me STEM, Ltd. All Rights Reserved.</p> -->
+        <p class="col-md-4 text-body-secondary" style="opacity: 0.0;">© 2025 Teach Me STEM, Ltd. All Rights Reserved.</p>
+        <a 
+            href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img 
+                alt="revision app home"
+                src="{% static 'revision/logo3.svg' %}"
+                width="135"
+                height="50.76">
+        </a>
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item">
+                <a href="{% url 'revision:privacy' %}" class="nav-link px-2 text-body-secondary">Privacy</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'revision:terms' %}" class="nav-link px-2 text-body-secondary">Terms</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">Copyright</a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">About us</a>
+            </li> -->
+        </ul>
+    </footer>
+</div>

@@ -1,0 +1,73 @@
+{% load static %}
+<div class="col col-sm-6 mb-3 mb-sm-0">
+    {% if topic in completed_topics %}  
+        <card 
+            id="card-div-{{ topic.id }}"
+            class="card-topic-complete shadow-lg card rounded-3 text-center border-info pt-1 h-100">
+            <div class="card-body">                      
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div aria-hidden="true" style="color:transparent">
+                        <img
+                            style="visibility: hidden;"
+                            alt="hidden checked checkbox"
+                            src="{% static 'images/checked_checkbox.svg' %}"
+                            width="25"
+                            height="25">
+                    </div>
+                    <h6 class="card-subtitle text-body-secondary">Topic {{ topic.topic_number }}</h6>
+                    <a 
+                        href="#" hx-target="#card-div-{{ topic.id }}" hx-swap="outerHTML" hx-post="{% url 'revision:mark_topic_as_uncomplete' topic.id %}" 
+                        hx-push-url="false">
+                        <img 
+                            class="my-checkbox"
+                            alt="checked checkbox"
+                            src="{% static 'images/checked_checkbox.svg' %}"
+                            width="25"
+                            height="25">   
+                    </a>     
+                </div>
+                <h5 class="card-title ">{{ topic.topic_name }}</h5>
+                <a 
+                    href="{% url 'revision:notes' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
+                <a 
+                    href="{% url 'revision:questions' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
+            </div>
+        </card>
+    {% else %}
+        <card
+            id="card-div-{{ topic.id }}"
+            class="card-topic shadow-lg card rounded-3 text-center border-info pt-1 h-100">
+            <div class="card-body">                      
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div aria-hidden="true" style="color:transparent">
+                        <img
+                            style="visibility: hidden;"
+                            alt="hidden checked checkbox"
+                            src="{% static 'images/checked_checkbox.svg' %}"
+                            width="25"
+                            height="25">   
+                    </div>
+                    <h6 class="card-subtitle text-body-secondary">Topic {{ topic.topic_number }}</h6>
+                    <a 
+                        href="#" hx-target="#card-div-{{ topic.id }}" hx-swap="outerHTML" hx-post="{% url 'revision:mark_topic_as_complete' topic.id %}" 
+                        hx-push-url="false">
+                        <img
+                            alt="unchecked checkbox"
+                            src="{% static 'images/unchecked_checkbox.svg' %}"
+                            width="25"
+                            height="25">   
+                    </a>      
+                </div>
+                <h5 class="card-title ">{{ topic.topic_name }}</h5>
+                <a 
+                    href="{% url 'revision:notes' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
+                <a 
+                    href="{% url 'revision:questions' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
+                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
+            </div>
+        </card>
+    {% endif %}
+</div>

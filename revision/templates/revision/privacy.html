@@ -1,0 +1,28 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% block title %}
+    Privacy ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:index' %}"
+                    class="text-info link-secondary link-underline-opacity-0"                   
+                    hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Privacy</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">Privacy</h1>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="d-flex justify-content-center">
+        Privacy.
+    </div>
+{% endblock content_1 %}

@@ -1,0 +1,72 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% block title %}
+    {{ examboard.name }} {{ examboard.subject.qualification.name }} {{ examboard.subject.name }}  Revision ·
+{% endblock title %}
+{% block breadcrumb %}
+    <div class="d-flex justify-content-between">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:index' %}"
+                        hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:qualification' examboard.subject.qualification.slug %}"
+                        hx-get="{% url 'revision:qualification' examboard.subject.qualification.slug %}" hx-target="#main-div" 
+                        hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">{{ examboard.subject.qualification.name }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:subject' examboard.subject.qualification.slug examboard.subject.id examboard.subject.slug %}"
+                        hx-get="{% url 'revision:subject' examboard.subject.qualification.slug examboard.subject.id examboard.subject.slug %}" 
+                        hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">{{ examboard.subject.name }}</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">{{ examboard.name }}</li>
+            </ol>
+        </nav>
+        {% include 'revision/snippets/my_subjects_btns.html' %}
+    </div>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <div class="d-flex justify-content-center">
+        <img 
+            alt="subject symbol"
+            src="{% static 'images/'|add:examboard.subject.slug|add:'.svg' %}"
+            width="90"
+            height="90">
+    </div>
+    <div class="d-flex justify-content-center">
+        <h1 class="my-3 display-5 fw-bold text-body-emphasis">
+            {{ examboard.name }} {{ examboard.subject.qualification.name }} {{ examboard.subject.name }}
+        </h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h5 class="border-none mb-4">Everything you need in one place.</h5>
+    </div>
+    <div class="my-4">    
+        {% include 'revision/snippets/topic_progress_bar.html' %}
+    </div>
+    <div id="congratulations-toast"></div>
+{% endblock page_header %}
+{% block content_1 %}
+    {% block topics %}
+    {% endblock topics %}
+    
+    {% block topics_maths_pure %}
+    {% endblock topics_maths_pure %}
+
+    {% block topics_maths_statistics %}
+    {% endblock topics_maths_statistics %}
+
+    {% block topics_maths_mechanics %}
+    {% endblock topics_maths_mechanics %}
+
+    {% block pastpapers %}
+    {% endblock pastpapers %}
+{% endblock content_1 %}

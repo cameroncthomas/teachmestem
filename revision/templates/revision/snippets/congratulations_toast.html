@@ -1,0 +1,13 @@
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="--bs-toast-max-width: 450px;" data-bs-delay="2000">
+      <h1 class="toast-body text-white d-flex align-items-center justify-content-center">
+        &#127881; Congratulations! &#127881;
+      </h1>
+    </div>
+</div>
+
+<script>  
+    var toastLiveExample = document.getElementById('liveToast');  
+    var toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastBootstrap.show();
+</script>

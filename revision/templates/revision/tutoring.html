@@ -1,0 +1,73 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% block title %}
+    Tutoring ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:index' %}"
+                    class="text-info link-secondary link-underline-opacity-0"                   
+                    hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Tutoring</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">Tutoring</h1>
+{% endblock page_header %}
+{% block content_1 %}
+<!-- <h5 class="border-none border-3 my-0 mb-5 d-flex justify-content-center">Optional subheader.</h5> -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 mb-3 text-center g-4">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-lg h-100">
+                    <div class="text-info card-header py-3 border-0">
+                        <img 
+                            class="card-img-top"
+                            alt="man icon"
+                            src="{% static 'images/man.svg' %}"
+                            width="70"
+                            height="70">
+                        <h3 class="my-0 fw-bold pt-3">Dr Cameron</h3>
+                    </div>
+                    <div class="card-body">
+                        Cameron holds a PhD in Theoretical Physics and is a first-class UCL Maths and Physics graduate with over 6 years of teaching and tutoring expertise.
+                        He has considerable experience in teaching Mathematics and Physics, from GCSE through to University.
+                        Rates for tutorials start from £75 per hour.
+                        <div>
+                            <a href="#" class="btn btn-primary-landing rounded-pill border-0 mt-5">Book a free meeting now!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-lg h-100">
+                    <div class="text-info card-header py-3 border-0">
+                        <img 
+                            class="card-img-top"
+                            alt="woman icon"
+                            src="{% static 'images/woman.svg' %}"
+                            width="70"
+                            height="70">
+                        <h3 class="my-0 fw-bold pt-3">Dr Larra</h3>
+                    </div>
+                    <div class="card-body">
+                        Larra is a PhD Biomathematician with a first-class honours degree in Maths and Physics from UCL and has over 
+                        10 years of teaching and tutoring experience. On top of time spent teaching in schools, she also has 
+                        thousands of hours of private tutoring experience and a deep understanding of the GCSE and A-Level syllabus.
+                        Rates for tutorials start from £75 per hour.
+                        <div>
+                            <a href="#" class="btn btn-primary-landing rounded-pill border-0 mt-5">Book a free meeting now!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content_1 %}

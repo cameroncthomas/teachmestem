@@ -1,0 +1,70 @@
+{% extends 'revision/base.html' %} 
+{% load static %}
+{% block title %}
+    {{topic.examboard.name}} {{ topic.examboard.subject.qualification.name }} {{ topic.examboard.subject.name }} Topic {{topic.topic_number}} Notes ·
+{% endblock title %}
+{% block breadcrumb %}
+    <div class="d-flex justify-content-between">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:index' %}"
+                        hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:qualification' topic.examboard.subject.qualification.slug %}"
+                        hx-get="{% url 'revision:qualification' topic.examboard.subject.qualification.slug %}" hx-target="#main-div" 
+                        hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.subject.qualification.name }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:subject' topic.examboard.subject.qualification.slug topic.examboard.subject.id topic.examboard.subject.slug %}"
+                        hx-get="{% url 'revision:subject' topic.examboard.subject.qualification.slug topic.examboard.subject.id topic.examboard.subject.slug %}" 
+                        hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                        class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.subject.name }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a 
+                        href="{% url 'revision:examboard' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.id topic.examboard.slug %}"
+                        hx-get="{% url 'revision:examboard' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.id topic.examboard.slug %}" 
+                        hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true"
+                        class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.name  }}</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">Topic {{ topic.topic_number }} : {{topic.topic_name}} - Notes</li>
+            </ol>
+        </nav>
+    </div>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h5 class="mt-3 mb-0 d-flex justify-content-center text-body-secondary">
+        Topic {{ topic.topic_number }}
+    </h5>
+    <h1 class="d-flex justify-content-center text-body-emphasis display-5 fw-bold mt-4 mb-5 py-2">
+        {{ topic.topic_name }}
+    </h1>
+{% endblock page_header %}
+
+{% block content_notes %}
+    {% include notes_template_name %}
+{% endblock content_notes %}
+{% block button_group_notes %}
+    <div class="d-flex justify-content-between">
+        {% if prev_topic is not None %}
+            <a 
+                href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug prev_topic.id prev_topic.slug %}" 
+                class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Previous topic</a>                       
+        {% endif %}
+        <a 
+            href="{% url 'revision:questions' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
+            class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Questions</a>
+        {% if next_topic is not None %}
+            <a 
+                href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug next_topic.id next_topic.slug %}" 
+                class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Next topic</a>                       
+        {% endif %}
+        </div>
+{% endblock button_group_notes %}

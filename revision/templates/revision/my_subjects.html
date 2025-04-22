@@ -1,0 +1,64 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% block title %}
+    My Subjects ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="#"
+                    hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                    class="link-secondary link-underline-opacity-0 text-info">Home</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">My Subjects</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">My Subjects</h1>
+    <h5 class="border-none my-0 mb-5 d-flex justify-content-center">Quickly access your revision material.</h5>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="row row-cols-1 g-4">
+        {% if not my_subjects %}
+            <div class="py-5 my-5">
+                <h5 class="border-none my-0 mb-5 d-flex justify-content-center">
+                    No subjects added yet!
+                </h5>
+            </div>
+        {% endif %}   
+        {% for my_subject in my_subjects %}
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <a 
+                    class="btn-card shadow-lg card btn btn-primary rounded-3 text-center border border-info pt-4 h-100"
+                    href="{% url 'revision:examboard' my_subject.examboard.subject.qualification.slug my_subject.examboard.subject.slug my_subject.examboard.id my_subject.examboard.slug %}"
+                    hx-get="{% url 'revision:examboard' my_subject.examboard.subject.qualification.slug my_subject.examboard.subject.slug my_subject.examboard.id my_subject.examboard.slug %}" 
+                    hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true">
+                    <img 
+                        class="card-img-top"
+                        alt="subject symbol"
+                        src="{% static 'images/'|add:my_subject.examboard.subject.slug|add:'.svg' %}"
+                        width="90"
+                        height="90">
+                    <div class="card-body">
+                        <h6 class="card-subtitle text-body-secondary py-2">{{ my_subject.examboard.subject.qualification.name }} · {{ my_subject.examboard.name }}</h6>
+                        <h5 class="mt-2 card-title">{{ my_subject.examboard.subject.name }}</h5>
+                        <div class="d-flex justify-content-center">
+                            <div 
+                                class="progress border-bottom w-50 mt-2" role="progressbar" aria-label="Topic progress" aria-valuenow="{{ my_subject.topic_progress_percentage }}"
+                                aria-valuemin="0" aria-valuemax="100" style="height: 6px">
+                                {% if my_subject.topic_progress_percentage == 100 %}
+                                    <div class="progress-bar bg-success" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
+                                {% else %}
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content_1 %}

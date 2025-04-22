@@ -1,0 +1,81 @@
+{% load static %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pastpaper in examboard_completion.pastpapers %}
+            {% if pastpaper in completed_pastpapers %}  
+                <tr id="row-div-{{ pastpaper.id }}" class="row-pastpaper-complete">
+                    <th scope="row">
+                        <h5 class="mt-1">{{ pastpaper.name | date:'F Y' }}</h5>
+                    </th>
+                    <td>
+                        <a 
+                            href="{% url 'revision:past_paper' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Paper {{ pastpaper.paper_number }}</a>                       
+                    </td>
+                    <td>
+                        <a 
+                            href="{% url 'revision:model_answers' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Model Answers</a>
+                    </td>
+                    <td>
+                        <a 
+                            href="{% url 'revision:mark_scheme' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Mark Scheme</a>
+                    </td>
+                    <td class="align-middle">
+                        <a 
+                            href="#" hx-target="#row-div-{{ pastpaper.id }}" hx-swap="outerHTML" hx-post="{% url 'revision:mark_pastpaper_as_uncomplete' pastpaper.id %}" 
+                            hx-push-url="false">
+                            <img
+                                alt="checked checkbox"
+                                src="{% static 'images/checked_checkbox.svg' %}"
+                                width="25"
+                                height="25">   
+                        </a>     
+                    </td>
+                </tr>
+            {% else %}
+                <tr id="row-div-{{ pastpaper.id }}">
+                    <th scope="row">
+                        <h5 class="mt-1">{{ pastpaper.name | date:'F Y' }}</h5>
+                    </th>
+                    <td>
+                        <a 
+                            href="{% url 'revision:past_paper' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Paper {{ pastpaper.paper_number }}</a>                       
+                    </td>
+                    <td>
+                        <a 
+                            href="{% url 'revision:model_answers' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Model Answers</a>
+                    </td>
+                    <td>
+                        <a 
+                            href="{% url 'revision:mark_scheme' examboard.subject.qualification.slug examboard.subject.slug examboard.slug pastpaper.id pastpaper.name %}" 
+                            class="btn btn-pastpaper rounded-pill border-0">Mark Scheme</a>
+                    </td>
+                    <td class="align-middle">
+                        <a 
+                            href="#" hx-target="#row-div-{{ pastpaper.id }}" hx-swap="outerHTML" hx-post="{% url 'revision:mark_pastpaper_as_complete' pastpaper.id %}" 
+                            hx-push-url="false">
+                            <img
+                                alt="unchecked checkbox"
+                                src="{% static 'images/unchecked_checkbox.svg' %}"
+                                width="25"
+                                height="25">   
+                        </a>      
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% block title %}
+    {{ qualification.name }} Revision ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:index' %}"
+                    hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
+                    class="link-secondary link-underline-opacity-0 text-info"
+                    hx-target="#main-div"
+                    hx-swap="innerHTML">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">{{ qualification.name }}</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">
+        {{ qualification.name }}
+    </h1>
+    <h5 class="border-none my-0 mb-5 d-flex justify-content-center">Choose your subject.</h5>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="row row-cols-1 g-4">
+        {% for subject in subjects %}
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <a
+                    class="btn-card shadow-lg card btn rounded-3 text-center border border-info pt-4 h-100"
+                    href="{% url 'revision:subject' qualification.slug subject.id subject.slug %}"
+                    hx-get="{% url 'revision:subject' qualification.slug subject.id subject.slug %}" 
+                    hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true">
+                    <img 
+                        class="card-img-top"
+                        alt="subject symbol"
+                        src="{% static 'images/'|add:subject.slug|add:'.svg' %}"
+                        width="90"
+                        height="90">
+                    <div class="card-body">
+                        <h5 class="card-title pt-3">{{ subject.name }}</h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content_1 %}
