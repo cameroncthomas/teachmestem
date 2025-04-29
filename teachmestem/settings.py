@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
     "django_bootstrap5",
+    "django_recaptcha",
     # Default apps.
     "django.contrib.admin",
     "django.contrib.auth",
