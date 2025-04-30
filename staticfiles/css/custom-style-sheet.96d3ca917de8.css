@@ -1,0 +1,117 @@
+.btn-primary-landing {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0d6efd;
+  --bs-btn-border-color: #0d6efd;
+  --bs-btn-hover-color: #e7e7e7;
+  --bs-btn-hover-bg: #17a2b8;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #20b9d1;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.bg-dark-landing {
+    background-color: #ed1414 !important;
+}
+  
+.btn-pastpaper {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: #0d6efd;
+    --bs-btn-border-color: #cde1ff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #17a2b8;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.navbar {backdrop-filter: blur(3px);}
+
+.link-body-emphasis:hover, .link-body-emphasis:focus {
+  color: #0dcaf0 !important;
+}
+
+.glowing-btn {
+  box-shadow: 0 0 6px #00ccff !important;
+}
+
+.glowing-bar {
+  box-shadow: 0 0 20px #34cf0a !important;
+}
+
+.navbar-dark-color {
+  background-color: rgba(40, 42, 45, 0.97);
+}
+
+.text-glowing-yellow {
+  text-shadow: 0 0 10px #f1dd00;
+  color:#f1dd00; 
+  text-underline-offset: 5px;
+}
+
+.bg-dark-lighter {
+  background-color:  #232528;
+}
+
+.btn-card {
+  --bs-btn-hover-color: #ffffff; 
+  --bs-btn-hover-bg: #127a8a; 
+  --bs-card-bg: #17a3b809;
+  --bs-btn-active-bg: #157483c1;
+}
+
+.card-topic {
+  --bs-card-bg:#17a3b809; 
+  --bs-btn-hover-bg: #17a2b8;
+}
+
+.card-topic:hover {
+  background-color: #17a3b838;
+}
+
+.card-hover:hover {
+  background-color: #0066ff00;
+}
+
+.card-topic-complete {
+  --bs-card-bg:#33b9cd5a;
+}
+
+.card-topic-complete:hover {
+  --bs-card-bg:#33b8cd87;
+}
+
+.row-pastpaper-complete {
+  --bs-table-bg:#33b9cd5a;
+}
+
+.smooth-transition {
+  transition: all 2s ease-in-out;
+}
+
+.dropdown-menu{
+  --bs-dropdown-link-active-bg: #65629dc5;
+}
+
+div.notes{
+    font-size: 17px;
+}
+
+div.notes ul li{
+    font-size: 20px;
+}
+
+.bg-worked-example{
+  background-color:  #2f4060;
+}
