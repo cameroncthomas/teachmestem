@@ -15,94 +15,239 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ExamBoard',
+            name="ExamBoard",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('slug', models.SlugField(default='default', max_length=200)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("slug", models.SlugField(default="default", max_length=200)),
             ],
         ),
         migrations.CreateModel(
-            name='Qualification',
+            name="Qualification",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('slug', models.SlugField(default='default', max_length=200, unique=True)),
-                ('qualification_number', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                (
+                    "slug",
+                    models.SlugField(default="default", max_length=200, unique=True),
+                ),
+                ("qualification_number", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='ExamBoardCompletion',
+            name="ExamBoardCompletion",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('examboard', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.examboard')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "examboard",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.examboard",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='PastPaper',
+            name="PastPaper",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.DateField(max_length=200)),
-                ('paper_number', models.IntegerField()),
-                ('paper', models.FileField(upload_to='pastpapers')),
-                ('model_answers', models.FileField(upload_to='model_answers')),
-                ('mark_scheme', models.FileField(upload_to='mark_schemes')),
-                ('examboard', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.examboard')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.DateField(max_length=200)),
+                ("paper_number", models.IntegerField()),
+                ("paper", models.FileField(upload_to="pastpapers")),
+                ("model_answers", models.FileField(upload_to="model_answers")),
+                ("mark_scheme", models.FileField(upload_to="mark_schemes")),
+                (
+                    "examboard",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.examboard",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='PastPaperCompletion',
+            name="PastPaperCompletion",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_complete', models.BooleanField(default=False)),
-                ('pastpaper', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.pastpaper')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("is_complete", models.BooleanField(default=False)),
+                (
+                    "pastpaper",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.pastpaper",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Subject',
+            name="Subject",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('slug', models.SlugField(default='default', max_length=200)),
-                ('subject_number', models.IntegerField()),
-                ('qualification', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.qualification')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("slug", models.SlugField(default="default", max_length=200)),
+                ("subject_number", models.IntegerField()),
+                (
+                    "qualification",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.qualification",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='examboard',
-            name='subject',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.subject'),
+            model_name="examboard",
+            name="subject",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="revision.subject"
+            ),
         ),
         migrations.CreateModel(
-            name='Topic',
+            name="Topic",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('maths_section', models.CharField(default='not applicable', max_length=200)),
-                ('topic_number', models.IntegerField()),
-                ('topic_name', models.CharField(max_length=200)),
-                ('slug', models.SlugField(default='default', max_length=200)),
-                ('notes', models.FileField(upload_to='notes')),
-                ('questions', models.FileField(upload_to='questions')),
-                ('examboard', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.examboard')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "maths_section",
+                    models.CharField(default="not applicable", max_length=200),
+                ),
+                ("topic_number", models.IntegerField()),
+                ("topic_name", models.CharField(max_length=200)),
+                ("slug", models.SlugField(default="default", max_length=200)),
+                ("notes", models.FileField(upload_to="notes")),
+                ("questions", models.FileField(upload_to="questions")),
+                (
+                    "examboard",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.examboard",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TopicCompletion',
+            name="TopicCompletion",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_complete', models.BooleanField(default=False)),
-                ('topic', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.topic')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("is_complete", models.BooleanField(default=False)),
+                (
+                    "topic",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="revision.topic"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='UserExamBoard',
+            name="UserExamBoard",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('examboard', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='revision.examboard')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "examboard",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="revision.examboard",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
