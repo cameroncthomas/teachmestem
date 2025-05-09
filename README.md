@@ -18,3 +18,17 @@ Some features include:
 - 📍 Pick out subjects currently studying for quick access to revision material and overall progress
 - 💌 Responsive HTML emails for account management (e.g. verification and forgotten password)
 - 🚢 Easy-to-navigate and intuitive UI
+
+<br>
+
+Technologies used:
+
+- Web framework: _Django_
+- Styling: _Bootstrap_
+- Interactivity:  _htmx_
+- Authentication: _django-allauth_
+- Static files: _WhiteNoise_
+- Bot protection: _reCAPTCHA v3, honeypot fields_
+- Email service: _SendGrid SMTP_
+- Email templates: _MJML_
+- Maths text: _MathJax_
