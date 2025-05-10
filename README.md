@@ -32,3 +32,16 @@ Technologies used:
 - Email service: _SendGrid SMTP_
 - Email templates: _MJML_
 - Maths text: _MathJax_
+
+## Screenshots
+
+<img width="49%" alt="home" src="https://github.com/user-attachments/assets/2114e810-026f-4155-a6b1-016673434ba9" />
+<img width="49%" alt="a level qualification" src="https://github.com/user-attachments/assets/67a2e06e-3519-4af1-9de7-486c2c07ea74" />
+<img width="49%" alt="edexcel a level maths exam board" src="https://github.com/user-attachments/assets/040649d2-8bdb-40c7-86e9-bf9b02679fdf" />
+<img width="49%" alt="pastpapers" src="https://github.com/user-attachments/assets/f311bba6-29ac-49d4-b204-c80f06706e4b" />
+<img width="49%" alt="proof notes" src="https://github.com/user-attachments/assets/f7f24f36-cfc1-4083-a25c-902bc68f9906" />
+<img width="49%" alt="proof notes worked example" src="https://github.com/user-attachments/assets/7c0ef1f9-e103-4202-af2d-4360ffc0b0ae" />
+<img width="49%" alt="my subjects" src="https://github.com/user-attachments/assets/75a48b60-31b2-4b91-ab1a-aa2485e7dbe7" />
+<img width="49%" alt="my account" src="https://github.com/user-attachments/assets/5f3e32fb-7afc-489b-a93b-89fac75582db" />
+<img width="49%" alt="sign up" src="https://github.com/user-attachments/assets/1c0d6dcd-0040-489a-b5f2-0a135cf3fbd4" />
+<img width="49%" alt="verify email" src="https://github.com/user-attachments/assets/3a737182-4cfd-4d5e-a1a7-934478b35e60" />
