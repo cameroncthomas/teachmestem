@@ -9,6 +9,8 @@
 
 Django web app for an education platform that provides resources, materials, and tools to help students prepare for their exams.
 
+<br>
+
 Some features include:
 
 - 🔑 User registration and authentication via email or social account (e.g. Google)
@@ -32,6 +34,8 @@ Technologies used:
 - Email service: _SendGrid SMTP_
 - Email templates: _MJML_
 - Maths text: _MathJax_
+
+<br>
 
 ## Screenshots
 
