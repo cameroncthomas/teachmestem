@@ -7,6 +7,8 @@
 [![python](https://img.shields.io/badge/python-3.12-ffde75)](https://github.com/python/cpython)
 [![django](https://img.shields.io/badge/django-5.2-0c4b32)](https://github.com/django/django)
 
+<br>
+
 Django web app for an education platform that provides resources, materials, and tools to help students prepare for their exams.
 
 <br>
@@ -36,16 +38,11 @@ Technologies used:
 - Maths text: _MathJax_
 
 <br>
+<br>
 
-## Screenshots
-
-<img width="49%" alt="home" src="https://github.com/user-attachments/assets/2114e810-026f-4155-a6b1-016673434ba9" />
-<img width="49%" alt="a level qualification" src="https://github.com/user-attachments/assets/67a2e06e-3519-4af1-9de7-486c2c07ea74" />
-<img width="49%" alt="edexcel a level maths exam board" src="https://github.com/user-attachments/assets/040649d2-8bdb-40c7-86e9-bf9b02679fdf" />
-<img width="49%" alt="pastpapers" src="https://github.com/user-attachments/assets/f311bba6-29ac-49d4-b204-c80f06706e4b" />
-<img width="49%" alt="proof notes" src="https://github.com/user-attachments/assets/f7f24f36-cfc1-4083-a25c-902bc68f9906" />
-<img width="49%" alt="proof notes worked example" src="https://github.com/user-attachments/assets/7c0ef1f9-e103-4202-af2d-4360ffc0b0ae" />
-<img width="49%" alt="my subjects" src="https://github.com/user-attachments/assets/75a48b60-31b2-4b91-ab1a-aa2485e7dbe7" />
-<img width="49%" alt="my account" src="https://github.com/user-attachments/assets/5f3e32fb-7afc-489b-a93b-89fac75582db" />
-<img width="49%" alt="sign up" src="https://github.com/user-attachments/assets/1c0d6dcd-0040-489a-b5f2-0a135cf3fbd4" />
-<img width="49%" alt="verify email" src="https://github.com/user-attachments/assets/3a737182-4cfd-4d5e-a1a7-934478b35e60" />
+<img width="49%" alt="navigate to exam board from home page" src="https://github.com/user-attachments/assets/b2db8f76-3505-4327-989c-8ae3a3fea0cb"/>
+<img width="49%" alt="complete topics in exam board" src="https://github.com/user-attachments/assets/369955e8-1c59-4b61-81b5-cbae197103bf"/>
+<img width="49%" alt="display revision notes and worked examples" src="https://github.com/user-attachments/assets/dcf5c18d-6c48-49e4-8a16-ab2de00879b6"/>
+<img width="49%" alt="add subject to my subjects" src="https://github.com/user-attachments/assets/28f14c6d-1aae-4fc7-9e7d-8e97bbb8fd32"/>
+<img width="49%" alt="sign up form" src="https://github.com/user-attachments/assets/1c0d6dcd-0040-489a-b5f2-0a135cf3fbd4" />
+<img width="49%" alt="verification email" src="https://github.com/user-attachments/assets/3a737182-4cfd-4d5e-a1a7-934478b35e60" />
