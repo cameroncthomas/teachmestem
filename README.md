@@ -27,15 +27,15 @@ Some features include:
 
 Technologies used:
 
-- Web framework: [Django](https://www.djangoproject.com/)
-- Styling: [Bootstrap](https://getbootstrap.com/)
-- Interactivity: [htmx](https://htmx.org/)
-- Authentication: [django-allauth](https://allauth.org/)
-- Static files: [WhiteNoise](https://github.com/evansd/whitenoise)
-- Bot protection: [Django reCAPTCHA](https://github.com/django-recaptcha/django-recaptcha)
-- Email service: [SendGrid SMTP](https://sendgrid.com/)
-- Email templates: [MJML](https://mjml.io/)
-- Maths text: [MathJax](https://www.mathjax.org/)
+- Web framework: [`Django`](https://www.djangoproject.com/)
+- Styling: [`Bootstrap`](https://getbootstrap.com/)
+- Interactivity: [`htmx`](https://htmx.org/)
+- Authentication: [`django-allauth`](https://allauth.org/)
+- Static files: [`WhiteNoise`](https://github.com/evansd/whitenoise)
+- Bot protection: [`Django reCAPTCHA`](https://github.com/django-recaptcha/django-recaptcha)
+- Email service: [`SendGrid SMTP`](https://sendgrid.com/)
+- Email templates: [`MJML`](https://mjml.io/)
+- Maths text: [`MathJax`](https://www.mathjax.org/)
 
 <br>
 <br>
