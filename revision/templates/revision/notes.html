@@ -56,15 +56,15 @@
         {% if prev_topic is not None %}
             <a 
                 href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug prev_topic.id prev_topic.slug %}" 
-                class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Previous topic</a>                       
+                class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 py-2 my-2">Previous topic</a>                       
         {% endif %}
         <a 
             href="{% url 'revision:questions' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
-            class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Questions</a>
+            class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 py-2 my-2">Questions</a>
         {% if next_topic is not None %}
             <a 
                 href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug next_topic.id next_topic.slug %}" 
-                class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 py-2 my-2">Next topic</a>                       
+                class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 py-2 my-2">Next topic</a>                       
         {% endif %}
         </div>
 {% endblock button_group_notes %}

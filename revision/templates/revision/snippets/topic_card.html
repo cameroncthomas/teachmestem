@@ -29,10 +29,10 @@
                 <h5 class="card-title ">{{ topic.topic_name }}</h5>
                 <a 
                     href="{% url 'revision:notes' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
-                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
+                    class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
                 <a 
                     href="{% url 'revision:questions' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
-                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
+                    class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
             </div>
         </card>
     {% else %}
@@ -63,10 +63,10 @@
                 <h5 class="card-title ">{{ topic.topic_name }}</h5>
                 <a 
                     href="{% url 'revision:notes' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
-                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
+                    class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
                 <a 
                     href="{% url 'revision:questions' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
-                    class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
+                    class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
             </div>
         </card>
     {% endif %}

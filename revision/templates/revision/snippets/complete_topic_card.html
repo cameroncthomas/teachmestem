@@ -25,12 +25,12 @@
         <h5 class="card-title">{{ topic.topic_name }}</h5>
         <a 
             href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
-            class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">
+            class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">
             Notes
         </a>                       
         <a 
             href="{% url 'revision:questions' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
-            class="btn btn-pastpaper rounded-pill border-0 mx-3 px-4 my-2">
+            class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">
             Questions
         </a>
     </div>

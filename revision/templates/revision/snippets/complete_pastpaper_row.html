@@ -7,21 +7,21 @@
     <td>
         <a
             href="{% url 'revision:past_paper' pastpaper.examboard.subject.qualification.slug pastpaper.examboard.subject.slug pastpaper.examboard.slug pastpaper.id pastpaper.name %}" 
-            class="btn btn-pastpaper rounded-pill border-0">
+            class="btn btn-primary-tms rounded-pill border-0">
             Paper {{ pastpaper.paper_number }}
         </a>                       
     </td>
     <td>
         <a
             href="{% url 'revision:model_answers' pastpaper.examboard.subject.qualification.slug pastpaper.examboard.subject.slug pastpaper.examboard.slug pastpaper.id pastpaper.name %}" 
-            class="btn btn-pastpaper rounded-pill border-0">
+            class="btn btn-primary-tms rounded-pill border-0">
             Model Answers
         </a>
     </td>
     <td>
         <a
             href="{% url 'revision:mark_scheme' pastpaper.examboard.subject.qualification.slug pastpaper.examboard.subject.slug pastpaper.examboard.slug pastpaper.id pastpaper.name %}" 
-            class="btn btn-pastpaper rounded-pill border-0">
+            class="btn btn-primary-tms rounded-pill border-0">
             Mark Scheme
         </a>
     </td>
