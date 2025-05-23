@@ -1,17 +1,7 @@
 <div id="my-subjects-btns">
     {% if is_examboard_in_my_subjects is True %}
-        <button 
-            hx-post="{% url 'revision:remove_examboard_from_my_subjects' examboard.id %}" 
-            hx-target="#my-subjects-btns" hx-swap="outerHTML" hx-push-url="false"
-            class="align-self-center btn btn-mysubjects-remove rounded-pill px-4 py-2">
-            - Remove from My Subjects
-        </button>
+        {% include 'revision/snippets/remove_from_my_subjects_btn.html' %}
     {% else %}
-        <button 
-            hx-post="{% url 'revision:add_examboard_to_my_subjects' examboard.id %}" 
-            hx-target="#my-subjects-btns" hx-swap="outerHTML" hx-push-url="false"
-            class="align-self-center btn btn-primary-tms rounded-pill border-0 px-4 py-2">
-            + Add to My Subjects
-        </button>
+        {% include 'revision/snippets/add_to_my_subjects_btn.html' %}
     {% endif %}
 </div>
