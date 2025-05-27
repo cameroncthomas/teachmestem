@@ -139,6 +139,7 @@
 }
 
 div.notes{
+    max-width: 850px;
     font-size: 17px;
 }
 
