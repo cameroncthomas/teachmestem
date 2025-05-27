@@ -26,23 +26,24 @@
         </div>
         <h5 class="card-title ">{{ topic.topic_name }}</h5>
         <a 
-            href="{% url 'revision:notes' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
+            href="{% url 'revision:notes' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
             class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Notes</a>                       
         <a 
-            href="{% url 'revision:questions' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.slug topic.id topic.slug %}" 
+            href="{% url 'revision:questions' examboard.subject.qualification.slug examboard.subject.slug examboard.slug topic.id topic.slug %}" 
             class="btn btn-primary-tms rounded-pill border-0 mx-3 px-4 my-2">Questions</a>
     </div>
 </card>
 
 <!-- htmx oob swaps -->
+{% if is_request_htmx %}
+    <!-- topic completion count -->
+    <h6 id="topic-completion-count" hx-swap-oob="true" class="border-none d-flex justify-content-center mb-3 text-secondary-emphasis">
+        ( {{ num_topics_completed }} / {{ total_num_topics }} )
+    </h6>
 
-<!-- topic completion count -->
-<h6 id="topic-completion-count" hx-swap-oob="true" class="border-none d-flex justify-content-center mb-3 text-secondary-emphasis">
-    ( {{ num_topics_completed }} / {{ total_num_topics }} )
-</h6>
+    <!-- topic progress bar -->
+    <div id="topic-progress-bar" hx-swap-oob="true" class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ topic_progress_percentage }}%"></div>
 
-<!-- topic progress bar -->
-<div id="topic-progress-bar" hx-swap-oob="true" class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ topic_progress_percentage }}%"></div>
-
-<!-- congratulations toast -->
-<div id="congratulations-toast" hx-swap-oob="true"></div>
+    <!-- congratulations toast -->
+    <div id="congratulations-toast" hx-swap-oob="true"></div>
+{% endif %}

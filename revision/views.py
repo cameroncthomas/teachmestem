@@ -273,9 +273,11 @@ def mark_topic_as_uncomplete(request, topic_id):
         ).exists()
     ):
         raise Http404
+    is_request_htmx = request.headers.get("HX-Request") == "true"
     topic = Topic.objects.select_related(
         "examboard", "examboard__subject", "examboard__subject__qualification"
     ).get(id=topic_id)
+    examboard = topic.examboard
     topic_completion = TopicCompletion.objects.get(
         user=request.user, topic=topic, is_complete=True
     )
@@ -291,7 +293,9 @@ def mark_topic_as_uncomplete(request, topic_id):
         else 0
     )
     context = {
+        "is_request_htmx": is_request_htmx,
         "topic": topic,
+        "examboard": examboard,
         "num_topics_completed": num_topics_completed,
         "total_num_topics": total_num_topics,
         "topic_progress_percentage": topic_progress_percentage,
