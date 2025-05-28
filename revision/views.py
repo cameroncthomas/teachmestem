@@ -312,9 +312,11 @@ def mark_pastpaper_as_complete(request, pastpaper_id):
         user=request.user, pastpaper__id=pastpaper_id, is_complete=True
     ).exists():
         raise Http404
+    is_request_htmx = request.headers.get("HX-Request") == "true"
     pastpaper = PastPaper.objects.select_related(
         "examboard", "examboard__subject", "examboard__subject__qualification"
     ).get(id=pastpaper_id)
+    examboard = pastpaper.examboard
     pastpaper_completion = PastPaperCompletion.objects.get_or_create(
         user=request.user, pastpaper=pastpaper, is_complete=False
     )[0]
@@ -332,7 +334,9 @@ def mark_pastpaper_as_complete(request, pastpaper_id):
         else 0
     )
     context = {
+        "is_request_htmx": is_request_htmx,
         "pastpaper": pastpaper,
+        "examboard": examboard,
         "num_pastpapers_completed": num_pastpapers_completed,
         "total_num_pastpapers": total_num_pastpapers,
         "pastpaper_progress_percentage": pastpaper_progress_percentage,
