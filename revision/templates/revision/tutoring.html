@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
                 <a 
                     href="{% url 'revision:index' %}"
-                    class="text-info link-secondary link-underline-opacity-0"                   
+                    class="text-info link-secondary link-underline-opacity-0"
                     hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true">
                     Home
                 </a>
@@ -37,10 +37,12 @@
                     </div>
                     <div class="card-body">
                         Cameron holds a PhD in Theoretical Physics and is a first-class UCL Maths and Physics graduate with over 6 years of teaching and tutoring expertise.
+                        <br>
                         He has considerable experience in teaching Mathematics and Physics, from GCSE through to University.
-                        Rates for tutorials start from £75 per hour.
+                        <br>
+                        Rates for tutorials start from £100 per hour.
                         <div>
-                            <button class="btn btn-primary-landing rounded-pill border-0 mt-5" disabled>All slots are booked!</button>
+                            <button class="btn btn-primary-landing rounded-pill border-0 mt-5" disabled>All slots are booked</button>
                         </div>
                     </div>
                 </div>
@@ -58,9 +60,12 @@
                     </div>
                     <div class="card-body">
                         Larra is a PhD Biomathematician with a first-class honours degree in Maths and Physics from UCL and has over 
-                        10 years of teaching and tutoring experience. On top of time spent teaching in schools, she also has 
+                        10 years of teaching and tutoring experience. 
+                        <br>
+                        On top of time spent teaching in schools, she also has 
                         thousands of hours of private tutoring experience and a deep understanding of the GCSE and A-Level syllabus.
-                        Rates for tutorials start from £75 per hour.
+                        <br>
+                        Rates for tutorials start from £100 per hour.
                         <div>
                             <a href="{% url 'revision:tutoring_contact' %}" class="btn btn-primary-landing rounded-pill border-0 mt-5">Get in touch!</a>
                         </div>
