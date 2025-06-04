@@ -9,8 +9,13 @@ from .models import (
     Subject,
     Topic,
     TopicCompletion,
+    TutoringContactUser,
     UserExamBoard,
 )
+
+
+class TutoringContactUserAdmin(admin.ModelAdmin):
+    list_display = ["tutor_name", "first_name", "last_name", "email"]
 
 
 class QualificationAdmin(admin.ModelAdmin):
@@ -83,6 +88,7 @@ class UserExamBoardAdmin(admin.ModelAdmin):
     ]
 
 
+admin.site.register(TutoringContactUser, TutoringContactUserAdmin)
 admin.site.register(Qualification, QualificationAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(ExamBoard, ExamboardAdmin)
