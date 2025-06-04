@@ -33,4 +33,4 @@ class TutoringContactForm(forms.ModelForm):
             "email": "Email address",
             "message": "Message",
         }
-        widgets = {"text": forms.Textarea(attrs={"style": "height:150px"})}
+        widgets = {"message": forms.Textarea(attrs={"style": "height:150px"})}
