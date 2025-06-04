@@ -1,0 +1,44 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block title %}
+    Tutoring Contact ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:index' %}"
+                    class="text-info link-secondary link-underline-opacity-0">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:tutoring' %}"
+                    class="text-info link-secondary link-underline-opacity-0">
+                    Tutoring
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Contact</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">Tutoring Contact</h1>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="container">
+        <p class="d-flex justify-content-center">Enter the details below.</p>
+        <div class="d-flex justify-content-center">
+            <form action="{% url 'revision:tutoring_contact' %}" method='post'>
+                {% csrf_token %}
+                {% bootstrap_form form layout="floating" %}
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary-tms rounded-pill px-4 py-2 border-0" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content_1 %}
