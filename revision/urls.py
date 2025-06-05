@@ -8,18 +8,6 @@ app_name = "revision"
 urlpatterns = [
     # Home page.
     path("", views.index, name="index"),
-    # Page that shows tutoring info.
-    path(
-        "tutoring/",
-        views.tutoring,
-        name="tutoring",
-    ),
-    # Page that shows tutoring contact form.
-    path(
-        "tutoring/contact/",
-        views.tutoring_contact,
-        name="tutoring_contact",
-    ),
     # Page that shows privacy info.
     path(
         "privacy/",
