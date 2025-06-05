@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     # My apps.
     "revision",
+    "tutoring",
     # Third party apps.
     "allauth",
     "allauth.account",
