@@ -9,15 +9,11 @@
             <li class="breadcrumb-item">
                 <a 
                     href="{% url 'revision:index' %}"
-                    hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" 
-                    hx-push-url="true" 
                     class="link-secondary link-underline-opacity-0 text-info">Home</a>
             </li>
             <li class="breadcrumb-item">
                 <a 
                     href="{% url 'revision:qualification' subject.qualification.slug %}"
-                    hx-get="{% url 'revision:qualification' subject.qualification.slug %}" 
-                    hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
                     class="link-secondary link-underline-opacity-0 text-info">{{ subject.qualification.name }}</a>
             </li>
             <li class="breadcrumb-item" aria-current="page">{{ subject.name }}</li>
@@ -36,9 +32,7 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <a 
                     class="btn-card shadow-lg card btn btn-primary rounded-3 text-center border border-info pt-2 h-100"
-                    href="{% url 'revision:examboard' subject.qualification.slug subject.slug examboard.id examboard.slug %}"
-                    hx-get="{% url 'revision:examboard' subject.qualification.slug subject.slug examboard.id examboard.slug %}" 
-                    hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true"> 
+                    href="{% url 'revision:examboard' subject.qualification.slug subject.slug examboard.id examboard.slug %}"> 
                     <div class="card-body">
                         <h5 class="card-title">{{ examboard.name }}</h5>
                     </div>

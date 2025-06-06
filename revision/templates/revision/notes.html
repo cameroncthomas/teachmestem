@@ -10,28 +10,21 @@
                 <li class="breadcrumb-item">
                     <a 
                         href="{% url 'revision:index' %}"
-                        hx-get="{% url 'revision:index' %}" hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
                         class="link-secondary link-underline-opacity-0 text-info">Home</a>
                 </li>
                 <li class="breadcrumb-item">
                     <a 
                         href="{% url 'revision:qualification' topic.examboard.subject.qualification.slug %}"
-                        hx-get="{% url 'revision:qualification' topic.examboard.subject.qualification.slug %}" hx-target="#main-div" 
-                        hx-swap="innerHTML" hx-push-url="true" 
                         class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.subject.qualification.name }}</a>
                 </li>
                 <li class="breadcrumb-item">
                     <a 
                         href="{% url 'revision:subject' topic.examboard.subject.qualification.slug topic.examboard.subject.id topic.examboard.subject.slug %}"
-                        hx-get="{% url 'revision:subject' topic.examboard.subject.qualification.slug topic.examboard.subject.id topic.examboard.subject.slug %}" 
-                        hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true" 
                         class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.subject.name }}</a>
                 </li>
                 <li class="breadcrumb-item">
                     <a 
                         href="{% url 'revision:examboard' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.id topic.examboard.slug %}"
-                        hx-get="{% url 'revision:examboard' topic.examboard.subject.qualification.slug topic.examboard.subject.slug topic.examboard.id topic.examboard.slug %}" 
-                        hx-target="#main-div" hx-swap="innerHTML" hx-push-url="true"
                         class="link-secondary link-underline-opacity-0 text-info">{{ topic.examboard.name  }}</a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">Topic {{ topic.topic_number }} : {{topic.topic_name}} - Notes</li>

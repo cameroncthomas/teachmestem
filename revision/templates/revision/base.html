@@ -41,9 +41,7 @@
     </head>
     <body id="body-div" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         {% block navbar %}
-            {% if is_request_htmx is False %}
-                {% include 'revision/snippets/navbar.html' %}
-            {% endif %}
+            {% include 'revision/snippets/navbar.html' %}
         {% endblock navbar %}
         <main id="main-div" hx-push-url="true">
             <div class="container">
