@@ -16,7 +16,7 @@
             </li>
             <li class="breadcrumb-item">
                 <a 
-                    href="{% url 'revision:tutoring' %}"
+                    href="{% url 'tutoring:tutoring' %}"
                     class="text-info link-secondary link-underline-opacity-0">
                     Tutoring
                 </a>
@@ -32,7 +32,7 @@
     <div class="container">
         <p class="d-flex justify-content-center">Enter the details below.</p>
         <div class="d-flex justify-content-center">
-            <form action="{% url 'revision:tutoring_contact' %}" method='post'>
+            <form action="{% url 'tutoring:tutoring_contact' %}" method='post'>
                 {% csrf_token %}
                 {% bootstrap_form form layout="floating" %}
                 <div class="d-flex justify-content-center">
