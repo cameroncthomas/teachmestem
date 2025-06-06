@@ -20,10 +20,8 @@ from .models import (
 
 def index(request):
     """Home page for revision app."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
     }
     return render(request, "revision/index.html", context)
@@ -31,10 +29,8 @@ def index(request):
 
 def privacy(request):
     """Show privacy page."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
     }
     return render(request, "revision/privacy.html", context)
@@ -42,10 +38,8 @@ def privacy(request):
 
 def terms(request):
     """Show terms page."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
     }
     return render(request, "revision/terms.html", context)
@@ -54,14 +48,12 @@ def terms(request):
 @login_required
 def qualification(request, qualification_slug):
     """Show all subjects (Subject instances) for a given qualification."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     qualification = qualifications.get(slug=qualification_slug)
     subjects = Subject.objects.filter(qualification=qualification).order_by(
         "subject_number"
     )
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
         "qualification": qualification,
         "subjects": subjects,
@@ -72,12 +64,10 @@ def qualification(request, qualification_slug):
 @login_required
 def subject(request, qualification_slug, subject_id, subject_slug):
     """Show all exam boards (ExamBoard instances) for a given subject."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     subject = Subject.objects.select_related("qualification").get(id=subject_id)
     examboards = ExamBoard.objects.filter(subject=subject)
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
         "subject": subject,
         "examboards": examboards,
@@ -90,7 +80,6 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
     """Show all topics (Topic instances) and past papers (PastPaper instances) for a
     given ExamBoard instance.
     """
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     examboard = ExamBoard.objects.select_related(
         "subject", "subject__qualification"
@@ -117,7 +106,6 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
         else 0
     )
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
         "examboard": examboard,
         "examboard_completion": examboard_completion,
@@ -146,13 +134,11 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
 @login_required
 def my_subjects(request):
     """Show all exam boards (ExamBoard instances) added to 'My Subjects' by User."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     my_subjects = UserExamBoard.objects.select_related(
         "examboard", "examboard__subject", "examboard__subject__qualification"
     ).filter(user=request.user)
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
         "my_subjects": my_subjects,
     }
@@ -162,10 +148,8 @@ def my_subjects(request):
 @login_required
 def my_account(request):
     """Show available options relating to account for logged in users."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
     }
     return render(request, "revision/my_account.html", context)
@@ -385,7 +369,6 @@ def notes(
     request, qualification_slug, subject_slug, examboard_slug, topic_id, topic_slug
 ):
     """Show notes belonging to Topic instance."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     topic = Topic.objects.select_related(
         "examboard", "examboard__subject", "examboard__subject__qualification"
@@ -403,7 +386,6 @@ def notes(
     )
     notes_template_name = [notes_template, "revision/notes/no_notes_yet.html"]
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
         "topic": topic,
         "prev_topic": prev_topic,

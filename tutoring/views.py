@@ -8,10 +8,8 @@ from .forms import TutoringContactForm
 
 def tutoring(request):
     """Show tutoring page."""
-    is_request_htmx = request.headers.get("HX-Request") == "true"
     qualifications = Qualification.objects.order_by("qualification_number")
     context = {
-        "is_request_htmx": is_request_htmx,
         "qualifications": qualifications,
     }
     return render(request, "tutoring/tutoring.html", context)
