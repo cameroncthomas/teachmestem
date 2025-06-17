@@ -1,0 +1,9 @@
+<div 
+    class="progress border-bottom w-50 mt-2" role="progressbar" aria-label="Topic progress" aria-valuenow="{{ my_subject.topic_progress_percentage }}"
+    aria-valuemin="0" aria-valuemax="100" style="height: 6px">
+    {% if my_subject.topic_progress_percentage == 100 %}
+        <div class="progress-bar bg-success" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
+    {% else %}
+        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
+    {% endif %}
+</div>

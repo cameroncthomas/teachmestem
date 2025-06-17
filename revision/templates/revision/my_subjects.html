@@ -43,15 +43,7 @@
                         <h6 class="card-subtitle text-body-secondary py-2">{{ my_subject.examboard.subject.qualification.name }} · {{ my_subject.examboard.name }}</h6>
                         <h5 class="mt-2 card-title">{{ my_subject.examboard.subject.name }}</h5>
                         <div class="d-flex justify-content-center">
-                            <div 
-                                class="progress border-bottom w-50 mt-2" role="progressbar" aria-label="Topic progress" aria-valuenow="{{ my_subject.topic_progress_percentage }}"
-                                aria-valuemin="0" aria-valuemax="100" style="height: 6px">
-                                {% if my_subject.topic_progress_percentage == 100 %}
-                                    <div class="progress-bar bg-success" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
-                                {% else %}
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ my_subject.topic_progress_percentage }}%"></div>
-                                {% endif %}
-                            </div>
+                            {% include 'revision/snippets/my_subjects_progress_bar.html' %}
                         </div>
                     </div>
                 </a>
