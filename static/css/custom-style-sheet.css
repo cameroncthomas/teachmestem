@@ -150,3 +150,10 @@ div.notes ul li{
 .bg-worked-example{
   background-color:  #2f4060;
 }
+
+@media (max-width:768px) {
+    .nav-item {
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+}
