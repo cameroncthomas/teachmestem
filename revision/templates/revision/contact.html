@@ -1,0 +1,37 @@
+{% extends 'revision/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block title %}
+    Contact ·
+{% endblock title %}
+{% block breadcrumb %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a 
+                    href="{% url 'revision:index' %}"
+                    class="text-info link-secondary link-underline-opacity-0">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Contact</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+{% block page_header %}
+    <h1 class="border-none pb-2 my-3 d-flex justify-content-center display-5 fw-bold text-body-emphasis">Contact</h1>
+{% endblock page_header %}
+{% block content_1 %}
+    <div class="container">
+        <p class="d-flex justify-content-center mb-4">Please fill in the details below to get in touch with us.</p>
+        <div class="d-flex justify-content-center">
+            <form action="{% url 'revision:contact' %}" method='post'>
+                {% csrf_token %}
+                {% bootstrap_form form layout="floating" %}
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary-tms rounded-pill px-4 py-2 border-0" type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content_1 %}
