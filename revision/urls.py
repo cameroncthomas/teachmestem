@@ -20,6 +20,12 @@ urlpatterns = [
         views.terms,
         name="terms",
     ),
+    # Page that shows contact info and form.
+    path(
+        "contact/",
+        views.contact,
+        name="contact",
+    ),
     # Page that shows 'My Subjects' for logged in users.
     path(
         "my-subjects/",
