@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import (
+    ContactUser,
     ExamBoard,
     ExamBoardCompletion,
     PastPaper,
@@ -11,6 +12,10 @@ from .models import (
     TopicCompletion,
     UserExamBoard,
 )
+
+
+class ContactUserAdmin(admin.ModelAdmin):
+    list_display = ["first_name", "last_name", "email"]
 
 
 class QualificationAdmin(admin.ModelAdmin):
@@ -83,6 +88,7 @@ class UserExamBoardAdmin(admin.ModelAdmin):
     ]
 
 
+admin.site.register(ContactUser, ContactUserAdmin)
 admin.site.register(Qualification, QualificationAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(ExamBoard, ExamboardAdmin)
