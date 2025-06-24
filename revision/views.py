@@ -5,6 +5,7 @@ from django.http import FileResponse, Http404
 from django.shortcuts import render
 from django.utils.text import slugify
 
+from .forms import ContactForm
 from .models import (
     ExamBoard,
     ExamBoardCompletion,
@@ -43,6 +44,42 @@ def terms(request):
         "qualifications": qualifications,
     }
     return render(request, "revision/terms.html", context)
+
+
+def contact(request):
+    """Show contact page."""
+    qualifications = Qualification.objects.order_by("qualification_number")
+
+    if request.method != "POST":
+        form = ContactForm()
+    else:
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            send_mail(
+                subject=f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']} has sent a contact request",
+                message=f"""
+                    Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
+                    Email: {form.cleaned_data['email']}
+                    Message:
+                    
+                    {form.cleaned_data['text']}
+                    
+                    """,
+                from_email=None,
+                recipient_list=[],
+            )
+            context = {
+                "qualifications": qualifications,
+                "form": form,
+            }
+            return render(request, "revision/contact_sent.html", context)
+
+    context = {
+        "qualifications": qualifications,
+        "form": form,
+    }
+    return render(request, "revision/contact.html", context)
 
 
 @login_required
