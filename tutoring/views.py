@@ -4,13 +4,16 @@ from django.shortcuts import render
 from revision.models import Qualification
 
 from .forms import TutoringContactForm
+from .models import Tutor
 
 
 def tutoring(request):
     """Show tutoring page."""
     qualifications = Qualification.objects.order_by("qualification_number")
+    tutors = Tutor.objects.all()
     context = {
         "qualifications": qualifications,
+        "tutors": tutors,
     }
     return render(request, "tutoring/tutoring.html", context)
 
