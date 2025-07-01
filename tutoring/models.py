@@ -18,7 +18,7 @@ class Tutor(models.Model):
 class TutoringContactUser(models.Model):
     """A user who contacts via the Tutoring Contact Form."""
 
-    tutor_name = models.CharField(max_length=200)
+    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField()
