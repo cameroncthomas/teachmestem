@@ -23,54 +23,31 @@
 {% block content_1 %}
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 mb-3 text-center g-4">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-lg h-100">
-                    <div class="text-info card-header py-3 border-0">
-                        <img 
-                            class="card-img-top"
-                            alt="man icon"
-                            src="{% static 'images/man.svg' %}"
-                            width="70"
-                            height="70">
-                        <h3 class="my-0 fw-bold pt-3">Dr Cameron</h3>
-                    </div>
-                    <div class="card-body">
-                        Cameron holds a PhD in Theoretical Physics and is a first-class UCL Maths and Physics graduate with over 6 years of teaching and tutoring expertise.
-                        <br>
-                        He has considerable experience in teaching Mathematics and Physics, from GCSE through to University.
-                        <br>
-                        Rates for tutorials start from £100 per hour.
-                        <div>
-                            <button class="btn btn-primary-landing rounded-pill border-0 mt-5" disabled>All slots are booked</button>
+            {% for tutor in tutors %}
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-lg h-100">
+                        <div class="text-info card-header py-3 border-0">
+                            <img
+                                class="card-img-top"
+                                alt="tutor icon"
+                                src="{% static 'images/man.svg' %}"
+                                width="80"
+                                height="80">
+                            <h3 class="my-0 fw-bold pt-3">{{ tutor.name }}</h3>
+                        </div>
+                        <div class="card-body mt-3">
+                            {{ tutor.text|linebreaksbr }}
+                            <div>
+                                {% if tutor.is_available %}
+                                    <a href="{% url 'tutoring:tutoring_contact' tutor.id %}" class="btn btn-primary-landing rounded-pill border-0 mt-5">Get in touch!</a>
+                                {% else %}
+                                    <button class="btn btn-primary-landing rounded-pill border-0 mt-5" disabled>All slots are booked</button>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-lg h-100">
-                    <div class="text-info card-header py-3 border-0">
-                        <img 
-                            class="card-img-top"
-                            alt="woman icon"
-                            src="{% static 'images/woman.svg' %}"
-                            width="70"
-                            height="70">
-                        <h3 class="my-0 fw-bold pt-3">Dr Larra</h3>
-                    </div>
-                    <div class="card-body">
-                        Larra is a PhD Biomathematician with a first-class honours degree in Maths and Physics from UCL and has over 
-                        10 years of teaching and tutoring experience. 
-                        <br>
-                        On top of time spent teaching in schools, she also has 
-                        thousands of hours of private tutoring experience and a deep understanding of the GCSE and A-Level syllabus.
-                        <br>
-                        Rates for tutorials start from £100 per hour.
-                        <div>
-                            <a href="{% url 'tutoring:tutoring_contact' %}" class="btn btn-primary-landing rounded-pill border-0 mt-5">Get in touch!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock content_1 %}
