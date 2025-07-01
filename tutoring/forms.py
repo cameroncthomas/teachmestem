@@ -10,9 +10,9 @@ class TutoringContactForm(forms.ModelForm):
 
     class Meta:
         model = TutoringContactUser
-        fields = ["tutor_name", "first_name", "last_name", "email", "message"]
+        fields = ["tutor", "first_name", "last_name", "email", "message"]
         labels = {
-            "tutor_name": "Tutor name",
+            "tutor": "Tutor",
             "email": "Email address",
             "message": "Message",
         }

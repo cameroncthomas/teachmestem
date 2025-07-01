@@ -26,7 +26,7 @@ def tutoring_contact(request):
         if form.is_valid():
             send_mail(
                 subject=f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']} has requested tutoring!",
-                message=f"""Requested tutor: {form.cleaned_data['tutor_name']}
+                message=f"""Requested tutor: {form.cleaned_data['tutor']}
                     Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
                     Email: {form.cleaned_data['email']}
                     Message:
