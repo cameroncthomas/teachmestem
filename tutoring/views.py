@@ -18,10 +18,10 @@ def tutoring(request):
     return render(request, "tutoring/tutoring.html", context)
 
 
-def tutoring_contact(request):
+def tutoring_contact(request, tutor_id):
     """Show tutoring contact page."""
     qualifications = Qualification.objects.order_by("qualification_number")
-
+    tutor = Tutor.objects.get(id=tutor_id)
     if request.method != "POST":
         form = TutoringContactForm()
     else:
@@ -29,7 +29,7 @@ def tutoring_contact(request):
         if form.is_valid():
             send_mail(
                 subject=f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']} has requested tutoring!",
-                message=f"""Requested tutor: {form.cleaned_data['tutor']}
+                message=f"""Requested tutor: {tutor.name}
                     Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
                     Email: {form.cleaned_data['email']}
                     Message:
@@ -49,6 +49,7 @@ def tutoring_contact(request):
 
     context = {
         "qualifications": qualifications,
+        "tutor": tutor,
         "form": form,
     }
     return render(request, "tutoring/tutoring_contact.html", context)
