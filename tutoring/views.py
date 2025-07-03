@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from revision.models import Qualification
 
@@ -41,11 +41,7 @@ def tutoring_contact(request, tutor_id):
                 recipient_list=[],
             )
             form.save()
-            context = {
-                "qualifications": qualifications,
-                "form": form,
-            }
-            return render(request, "tutoring/tutoring_contact_sent.html", context)
+            return redirect("tutoring:tutoring_contact_sent", tutor_id)
 
     context = {
         "qualifications": qualifications,
