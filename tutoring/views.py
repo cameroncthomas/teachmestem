@@ -53,3 +53,10 @@ def tutoring_contact(request, tutor_id):
         "form": form,
     }
     return render(request, "tutoring/tutoring_contact.html", context)
+
+
+def tutoring_contact_sent(request, tutor_id):
+    """Show tutoring contact form success page."""
+    qualifications = Qualification.objects.order_by("qualification_number")
+    context = {"qualifications": qualifications}
+    return render(request, "tutoring/tutoring_contact_sent.html", context)
