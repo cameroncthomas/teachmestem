@@ -19,4 +19,10 @@ urlpatterns = [
         views.tutoring_contact,
         name="tutoring_contact",
     ),
+    # Page that shows tutoring contact form success message.
+    path(
+        "<int:tutor_id>/contact/sent/",
+        views.tutoring_contact_sent,
+        name="tutoring_contact_sent",
+    ),
 ]
