@@ -15,7 +15,7 @@ urlpatterns = [
     ),
     # Page that shows tutoring contact info.
     path(
-        "contact/<int:tutor_id>/",
+        "<int:tutor_id>/contact/",
         views.tutoring_contact,
         name="tutoring_contact",
     ),
