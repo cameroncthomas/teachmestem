@@ -58,3 +58,12 @@ def courses_register(request, course_id):
         "form": form,
     }
     return render(request, "courses/courses_register.html", context)
+
+
+def courses_register_success(request, course_id):
+    """Show course registration form success page."""
+    qualifications = Qualification.objects.order_by("qualification_number")
+    context = {
+        "qualifications": qualifications,
+    }
+    return render(request, "courses/courses_register_success.html", context)
