@@ -8,8 +8,8 @@ class ContactUser(models.Model):
 
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    email = models.EmailField()
-    text = models.TextField()
+    email = models.EmailField(max_length=254)
+    text = models.TextField(max_length=10000)
 
     def __str__(self):
         """Return a string representation of the model."""
