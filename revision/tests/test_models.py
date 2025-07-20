@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.utils.text import slugify
 
-from revision.models import ContactUser
+from revision.models import ContactUser, Qualification
 
 
 class ContactUserModelTest(TestCase):
@@ -60,3 +61,51 @@ class ContactUserModelTest(TestCase):
             f"{contact_user.first_name} {contact_user.last_name}"
         )
         self.assertEqual(str(contact_user), expected_string_representation)
+
+
+class QualificationModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        Qualification.objects.create(name="GCSE", qualification_number=137)
+
+    def test_name_label(self):
+        qualification = Qualification.objects.get(id=1)
+        name_label = qualification._meta.get_field("name").verbose_name
+        self.assertEqual(name_label, "name")
+
+    def test_slug_label(self):
+        qualification = Qualification.objects.get(id=1)
+        slug_label = qualification._meta.get_field("slug").verbose_name
+        self.assertEqual(slug_label, "slug")
+
+    def test_qualification_number_label(self):
+        qualification = Qualification.objects.get(id=1)
+        qualification_number_label = qualification._meta.get_field(
+            "qualification_number"
+        ).verbose_name
+        self.assertEqual(qualification_number_label, "qualification number")
+
+    def test_name_max_length(self):
+        qualification = Qualification.objects.get(id=1)
+        name_max_length = qualification._meta.get_field("name").max_length
+        self.assertEqual(name_max_length, 200)
+
+    def test_slug_max_length(self):
+        qualification = Qualification.objects.get(id=1)
+        slug_max_length = qualification._meta.get_field("slug").max_length
+        self.assertEqual(slug_max_length, 200)
+
+    def test_string_representation_is_name(self):
+        qualification = Qualification.objects.get(id=1)
+        expected_string_representation = f"{qualification.name}"
+        self.assertEqual(str(qualification), expected_string_representation)
+
+    def test_save_updates_slug_field(self):
+        qualification = Qualification.objects.create(
+            name="A Level", qualification_number=731
+        )
+        qualification.slug = "slug"
+        qualification.save()
+        expected_slug = slugify(qualification.name)
+        self.assertEqual(qualification.slug, expected_slug)
