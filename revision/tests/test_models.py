@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.utils.text import slugify
 
-from revision.models import ContactUser, Qualification, Subject
+from revision.models import ContactUser, ExamBoard, Qualification, Subject
 
 
 class ContactUserModelTest(TestCase):
@@ -168,3 +168,59 @@ class SubjectModelTest(TestCase):
         subject = Subject.objects.get(id=1)
         expected_string_representation = f"{subject.name}"
         self.assertEqual(str(subject), expected_string_representation)
+
+
+class ExamBoardModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        qualification = Qualification.objects.create(
+            name="GCSE", qualification_number=1
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Physics", subject_number=137
+        )
+        ExamBoard.objects.create(subject=subject, name="AQA")
+
+    def test_subject_label(self):
+        examboard = ExamBoard.objects.get(id=1)
+        subject_label = examboard._meta.get_field("subject").verbose_name
+        self.assertEqual(subject_label, "subject")
+
+    def test_name_label(self):
+        examboard = ExamBoard.objects.get(id=1)
+        name_label = examboard._meta.get_field("name").verbose_name
+        self.assertEqual(name_label, "name")
+
+    def test_slug_label(self):
+        examboard = ExamBoard.objects.get(id=1)
+        slug_label = examboard._meta.get_field("slug").verbose_name
+        self.assertEqual(slug_label, "slug")
+
+    def test_name_max_length(self):
+        examboard = ExamBoard.objects.get(id=1)
+        name_max_length = examboard._meta.get_field("name").max_length
+        self.assertEqual(name_max_length, 200)
+
+    def test_slug_max_length(self):
+        examboard = ExamBoard.objects.get(id=1)
+        slug_max_length = examboard._meta.get_field("slug").max_length
+        self.assertEqual(slug_max_length, 200)
+
+    def test_save_updates_slug_field(self):
+        qualification = Qualification.objects.create(
+            name="A Level", qualification_number=2
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Maths", subject_number=123
+        )
+        examboard = ExamBoard.objects.create(subject=subject, name="OCR")
+        examboard.slug = "slug"
+        examboard.save()
+        expected_slug = slugify(examboard.name)
+        self.assertEqual(examboard.slug, expected_slug)
+
+    def test_string_representation_is_name(self):
+        examboard = ExamBoard.objects.get(id=1)
+        expected_string_representation = f"{examboard.name}"
+        self.assertEqual(str(examboard), expected_string_representation)
