@@ -96,11 +96,6 @@ class QualificationModelTest(TestCase):
         slug_max_length = qualification._meta.get_field("slug").max_length
         self.assertEqual(slug_max_length, 200)
 
-    def test_string_representation_is_name(self):
-        qualification = Qualification.objects.get(id=1)
-        expected_string_representation = f"{qualification.name}"
-        self.assertEqual(str(qualification), expected_string_representation)
-
     def test_save_updates_slug_field(self):
         qualification = Qualification.objects.create(
             name="A Level", qualification_number=731
@@ -109,3 +104,8 @@ class QualificationModelTest(TestCase):
         qualification.save()
         expected_slug = slugify(qualification.name)
         self.assertEqual(qualification.slug, expected_slug)
+
+    def test_string_representation_is_name(self):
+        qualification = Qualification.objects.get(id=1)
+        expected_string_representation = f"{qualification.name}"
+        self.assertEqual(str(qualification), expected_string_representation)
