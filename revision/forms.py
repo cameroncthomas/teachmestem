@@ -24,6 +24,7 @@ class RevisionSignupForm(SignupForm):
 
 class ContactForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV3)
+    field_order = ["first_name", "last_name", "email", "text", "captcha"]
 
     class Meta:
         model = ContactUser
