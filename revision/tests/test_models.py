@@ -1,7 +1,10 @@
+import datetime
+
+from django.core.files.base import ContentFile
 from django.test import TestCase
 from django.utils.text import slugify
 
-from revision.models import ContactUser, ExamBoard, Qualification, Subject
+from revision.models import ContactUser, ExamBoard, PastPaper, Qualification, Subject
 
 
 class ContactUserModelTest(TestCase):
@@ -224,3 +227,68 @@ class ExamBoardModelTest(TestCase):
         examboard = ExamBoard.objects.get(id=1)
         expected_string_representation = f"{examboard.name}"
         self.assertEqual(str(examboard), expected_string_representation)
+
+
+class PastPaperModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        qualification = Qualification.objects.create(
+            name="IGCSE", qualification_number=271
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Computer Science", subject_number=137
+        )
+        examboard = ExamBoard.objects.create(subject=subject, name="AQA")
+        PastPaper.objects.create(
+            examboard=examboard,
+            name=datetime.date(2025, 7, 24),
+            paper_number=137,
+            paper=ContentFile("test-paper-content", name="test-paper"),
+            model_answers=ContentFile(
+                "test-model-answers-content", name="test-model-answers"
+            ),
+            mark_scheme=ContentFile(
+                "test-mark-scheme-content", name="test-mark-scheme"
+            ),
+        )
+
+    def test_examboard_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        examboard_label = pastpaper._meta.get_field("examboard").verbose_name
+        self.assertEqual(examboard_label, "examboard")
+
+    def test_name_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        name_label = pastpaper._meta.get_field("name").verbose_name
+        self.assertEqual(name_label, "name")
+
+    def test_paper_number_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        paper_number_label = pastpaper._meta.get_field("paper_number").verbose_name
+        self.assertEqual(paper_number_label, "paper number")
+
+    def test_paper_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        paper_label = pastpaper._meta.get_field("paper").verbose_name
+        self.assertEqual(paper_label, "paper")
+
+    def test_model_answers_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        model_answers_label = pastpaper._meta.get_field("model_answers").verbose_name
+        self.assertEqual(model_answers_label, "model answers")
+
+    def test_mark_scheme_label(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        mark_scheme_label = pastpaper._meta.get_field("mark_scheme").verbose_name
+        self.assertEqual(mark_scheme_label, "mark scheme")
+
+    def test_name_max_length(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        name_max_length = pastpaper._meta.get_field("name").max_length
+        self.assertEqual(name_max_length, 200)
+
+    def test_string_representation_is_name(self):
+        pastpaper = PastPaper.objects.get(id=1)
+        expected_string_representation = f"{pastpaper.name}"
+        self.assertEqual(str(pastpaper), expected_string_representation)
