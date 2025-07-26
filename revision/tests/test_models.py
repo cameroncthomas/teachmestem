@@ -4,7 +4,14 @@ from django.core.files.base import ContentFile
 from django.test import TestCase
 from django.utils.text import slugify
 
-from revision.models import ContactUser, ExamBoard, PastPaper, Qualification, Subject
+from revision.models import (
+    ContactUser,
+    ExamBoard,
+    PastPaper,
+    Qualification,
+    Subject,
+    Topic,
+)
 
 
 class ContactUserModelTest(TestCase):
@@ -292,3 +299,98 @@ class PastPaperModelTest(TestCase):
         pastpaper = PastPaper.objects.get(id=1)
         expected_string_representation = f"{pastpaper.name}"
         self.assertEqual(str(pastpaper), expected_string_representation)
+
+
+class TopicModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        qualification = Qualification.objects.create(
+            name="A level", qualification_number=1
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Computer Science", subject_number=1
+        )
+        examboard = ExamBoard.objects.create(subject=subject, name="OCR")
+        Topic.objects.create(
+            examboard=examboard,
+            topic_number=1,
+            topic_name="Data Structures and Algorithms",
+            notes=ContentFile("test-notes-content", name="test_files/test-notes"),
+            questions=ContentFile(
+                "test-questions-content", name="test_files/test-questions"
+            ),
+        )
+
+    def test_examboard_label(self):
+        topic = Topic.objects.get(id=1)
+        examboard_label = topic._meta.get_field("examboard").verbose_name
+        self.assertEqual(examboard_label, "examboard")
+
+    def test_maths_section_label(self):
+        topic = Topic.objects.get(id=1)
+        maths_section_label = topic._meta.get_field("maths_section").verbose_name
+        self.assertEqual(maths_section_label, "maths section")
+
+    def test_topic_number_label(self):
+        topic = Topic.objects.get(id=1)
+        topic_number_label = topic._meta.get_field("topic_number").verbose_name
+        self.assertEqual(topic_number_label, "topic number")
+
+    def test_topic_name_label(self):
+        topic = Topic.objects.get(id=1)
+        topic_name_label = topic._meta.get_field("topic_name").verbose_name
+        self.assertEqual(topic_name_label, "topic name")
+
+    def test_slug_label(self):
+        topic = Topic.objects.get(id=1)
+        slug_label = topic._meta.get_field("slug").verbose_name
+        self.assertEqual(slug_label, "slug")
+
+    def test_notes_label(self):
+        topic = Topic.objects.get(id=1)
+        notes_label = topic._meta.get_field("notes").verbose_name
+        self.assertEqual(notes_label, "notes")
+
+    def test_questions_label(self):
+        topic = Topic.objects.get(id=1)
+        questions_label = topic._meta.get_field("questions").verbose_name
+        self.assertEqual(questions_label, "questions")
+
+    def test_maths_section_max_length(self):
+        topic = Topic.objects.get(id=1)
+        maths_section_max_length = topic._meta.get_field("maths_section").max_length
+        self.assertEqual(maths_section_max_length, 200)
+
+    def test_topic_name_max_length(self):
+        topic = Topic.objects.get(id=1)
+        topic_name_max_length = topic._meta.get_field("topic_name").max_length
+        self.assertEqual(topic_name_max_length, 200)
+
+    def test_slug_max_length(self):
+        topic = Topic.objects.get(id=1)
+        slug_max_length = topic._meta.get_field("slug").max_length
+        self.assertEqual(slug_max_length, 200)
+
+    def test_save_updates_slug_field(self):
+        qualification = Qualification.objects.create(
+            name="IGCSE", qualification_number=3
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Maths", subject_number=314
+        )
+        examboard = ExamBoard.objects.create(subject=subject, name="AQA")
+        topic = Topic.objects.create(
+            examboard=examboard, topic_number=3, topic_name="Complex Numbers"
+        )
+        topic.slug = "slug"
+        topic.save()
+        expected_slug = slugify(f"Topic {topic.topic_number} : {topic.topic_name}")
+        self.assertEqual(topic.slug, expected_slug)
+
+    def test_string_representation_is_topic_topic_number_colon_topic_name(self):
+        topic = Topic.objects.get(id=1)
+        expected_string_representation = (
+            f"Topic {topic.topic_number} : {topic.topic_name}"
+        )
+        self.assertEqual(str(topic), expected_string_representation)
