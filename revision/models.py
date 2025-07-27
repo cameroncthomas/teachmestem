@@ -125,7 +125,7 @@ class PastPaperCompletion(models.Model):
 
     def __str__(self):
         """Return a string representation of the model."""
-        return f"Is PastPaper complete? {self.is_complete}"
+        return f"{self.pastpaper} past paper completion status"
 
 
 class ExamBoardCompletion(models.Model):
