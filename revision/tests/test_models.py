@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.test import TestCase
 from django.utils.text import slugify
@@ -11,6 +12,7 @@ from revision.models import (
     Qualification,
     Subject,
     Topic,
+    TopicCompletion,
 )
 
 
@@ -394,3 +396,53 @@ class TopicModelTest(TestCase):
             f"Topic {topic.topic_number} : {topic.topic_name}"
         )
         self.assertEqual(str(topic), expected_string_representation)
+
+
+class TopicCompletionModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create_user(
+            username="test-username",
+            email="test-email@test.com",
+            password="test-password",
+            first_name="test-firstname",
+            last_name="test-lastname",
+        )
+        qualification = Qualification.objects.create(
+            name="A level", qualification_number=2
+        )
+        subject = Subject.objects.create(
+            qualification=qualification, name="Computer Science", subject_number=2
+        )
+        examboard = ExamBoard.objects.create(subject=subject, name="AQA")
+        topic = Topic.objects.create(
+            examboard=examboard,
+            topic_number=1,
+            topic_name="Distributed Systems",
+            notes=ContentFile("test-notes-content", name="test_files/test-notes"),
+            questions=ContentFile(
+                "test-questions-content", name="test_files/test-questions"
+            ),
+        )
+        TopicCompletion.objects.create(user=user, topic=topic)
+
+    def test_user_label(self):
+        topic_completion = TopicCompletion.objects.get(id=1)
+        user_label = topic_completion._meta.get_field("user").verbose_name
+        self.assertEqual(user_label, "user")
+
+    def test_topic_label(self):
+        topic_completion = TopicCompletion.objects.get(id=1)
+        topic_label = topic_completion._meta.get_field("topic").verbose_name
+        self.assertEqual(topic_label, "topic")
+
+    def test_is_complete_label(self):
+        topic_completion = TopicCompletion.objects.get(id=1)
+        is_complete_label = topic_completion._meta.get_field("is_complete").verbose_name
+        self.assertEqual(is_complete_label, "is complete")
+
+    def test_string_representation_is_topic_str_completion_status(self):
+        topic_completion = TopicCompletion.objects.get(id=1)
+        expected_string_representation = f"{topic_completion.topic} completion status"
+        self.assertEqual(str(topic_completion), expected_string_representation)
