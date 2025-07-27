@@ -113,7 +113,7 @@ class TopicCompletion(models.Model):
 
     def __str__(self):
         """Return a string representation of the model."""
-        return f"Is Topic complete? {self.is_complete}"
+        return f"{self.topic} completion status"
 
 
 class PastPaperCompletion(models.Model):
