@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    env:
+      DEBUG: True
+      SECRET_KEY: test-secret-key-wfn*=-v4v976bj+desmwpxz-txt08vgakfaeA@D!@#2%qe*q3*s8p@sn73u
+      RECAPTCHA_PUBLIC_KEY: test-recaptcha-public-key-94879orhfghf
+      RECAPTCHA_PRIVATE_KEY: test-recaptcha-private-key-kufbnsaierfhu
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Apply Initial Migrations
+      run: |
+        python manage.py migrate
+    - name: Run Tests
+      run: |
+        python manage.py test
