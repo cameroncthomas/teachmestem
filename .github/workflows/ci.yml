@@ -13,6 +13,8 @@ jobs:
       SECRET_KEY: test-secret-key-wfn*=-v4v976bj+desmwpxz-txt08vgakfaeA@D!@#2%qe*q3*s8p@sn73u
       RECAPTCHA_PUBLIC_KEY: test-recaptcha-public-key-94879orhfghf
       RECAPTCHA_PRIVATE_KEY: test-recaptcha-private-key-kufbnsaierfhu
+      SESSION_COOKIE_SECURE: False
+      CSRF_COOKIE_SECURE: False
       SECURE_SSL_REDIRECT: False
     runs-on: ubuntu-latest
     strategy:
