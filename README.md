@@ -7,6 +7,7 @@
 [![python](https://img.shields.io/badge/python-3.10|3.11|3.12|3.13-ffde75)](https://github.com/python/cpython)
 [![django](https://img.shields.io/badge/django-5.2-0c4b32)](https://github.com/django/django)
 [![CI](https://github.com/cameroncthomas/teachmestem/actions/workflows/ci.yml/badge.svg)](https://github.com/cameroncthomas/teachmestem/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/cameroncthomas/teachmestem/badge.svg?branch=main)](https://coveralls.io/github/cameroncthomas/teachmestem?branch=main)
 
 <br>
 
