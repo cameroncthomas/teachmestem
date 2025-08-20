@@ -26,6 +26,12 @@ urlpatterns = [
         views.contact,
         name="contact",
     ),
+    # Page that shows contact form success message.
+    path(
+        "contact/sent/",
+        views.contact_sent,
+        name="contact_sent",
+    ),
     # Page that shows 'My Subjects' for logged in users.
     path(
         "my-subjects/",
