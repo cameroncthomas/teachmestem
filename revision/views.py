@@ -82,6 +82,13 @@ def contact(request):
     return render(request, "revision/contact.html", context)
 
 
+def contact_sent(request):
+    """Show contact form success page."""
+    qualifications = Qualification.objects.order_by("qualification_number")
+    context = {"qualifications": qualifications}
+    return render(request, "revision/contact_sent.html", context)
+
+
 @login_required
 def qualification(request, qualification_slug):
     """Show all subjects (Subject instances) for a given qualification."""
