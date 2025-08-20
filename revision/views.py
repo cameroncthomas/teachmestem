@@ -2,7 +2,7 @@ from allauth.account.decorators import verified_email_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import FileResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.utils.text import slugify
 
 from .forms import ContactForm
@@ -69,11 +69,7 @@ def contact(request):
                 from_email=None,
                 recipient_list=[],
             )
-            context = {
-                "qualifications": qualifications,
-                "form": form,
-            }
-            return render(request, "revision/contact_sent.html", context)
+            return redirect("revision:contact_sent")
 
     context = {
         "qualifications": qualifications,
