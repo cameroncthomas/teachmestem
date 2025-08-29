@@ -15,7 +15,7 @@ def courses(request):
         "examboard",
         "examboard__subject",
         "examboard__subject__qualification",
-    ).order_by("date", "-examboard__subject__name")
+    ).order_by("date", "examboard__subject__name")
     context = {
         "qualifications": qualifications,
         "courses": courses,
