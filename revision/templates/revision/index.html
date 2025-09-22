@@ -98,7 +98,7 @@
             {% for qualification in qualifications %}
                 <a 
                     href="{% url 'revision:qualification' qualification.slug %}"
-                    class="btn btn-primary-landing btn-lg mt-4 rounded-pill border-0 px-4 py-2 mx-2">{{ qualification.name }}</a>
+                    class="btn btn-primary-landing btn-lg mt-4 rounded-pill border-0 py-3 px-4 mx-2">{{ qualification.name }}</a>
             {% endfor %}
         </div>
     </div>
@@ -171,7 +171,7 @@
             <div class="d-flex justify-content-center">
                 <a 
                     href="{% url 'tutoring:tutoring' %}"
-                    class="btn btn-primary-landing btn-lg mt-3 rounded-pill border-0 px-4 py-2 mx-2">Tutoring
+                    class="btn btn-primary-landing btn-lg mt-3 rounded-pill border-0 py-3 px-4 mx-2">Tutoring
                 </a>
             </div>
         </div>
