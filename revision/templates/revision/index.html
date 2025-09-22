@@ -176,4 +176,26 @@
             </div>
         </div>
     </div>
+    <div class="py-5 bg-dark-lighter">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <img
+                    class="card-img-top mb-4"
+                    alt="team icon"
+                    src="{% static 'images/courses.svg' %}"
+                    width="175"
+                    height="175">
+            </div>
+            <h1 class="text-center mb-5 fw-bold mt-1">Courses</h1>
+            <h5 class="d-flex justify-content-center">
+                Join one of our exclusive GCSE or A Level revision courses today!
+            </h5>
+            <div class="d-flex justify-content-center pt-4 pb-2">
+                <a
+                    href="{% url 'courses:courses' %}"
+                    class="btn btn-primary-landing btn-lg mt-3 rounded-pill border-0 px-4 py-3 mx-2">Courses
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock content_2 %}
