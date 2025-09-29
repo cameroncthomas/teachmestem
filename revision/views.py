@@ -8,7 +8,6 @@ from django.utils.text import slugify
 from .forms import ContactForm
 from .models import (
     ExamBoard,
-    ExamBoardCompletion,
     PastPaper,
     PastPaperCompletion,
     Qualification,
@@ -124,17 +123,27 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
     examboard = ExamBoard.objects.select_related(
         "subject", "subject__qualification"
     ).get(id=examboard_id)
-    examboard_completion = ExamBoardCompletion.objects.get_or_create(
+    is_examboard_in_my_subjects = UserExamBoard.objects.filter(
         user=request.user, examboard=examboard
-    )[0]
-    is_examboard_in_my_subjects = examboard_completion.is_examboard_in_my_subjects
-    topics = examboard_completion.topics
-    completed_topics = examboard_completion.completed_topics
-    completed_pastpapers = examboard_completion.completed_pastpapers
+    ).exists()
+    topics = Topic.objects.filter(examboard=examboard)
+    pastpapers = PastPaper.objects.filter(examboard=examboard)
+    completed_topics = Topic.objects.filter(
+        examboard=examboard,
+        topiccompletion__user=request.user,
+        topiccompletion__topic__in=topics,
+        topiccompletion__is_complete=True,
+    )
+    completed_pastpapers = PastPaper.objects.filter(
+        examboard=examboard,
+        pastpapercompletion__user=request.user,
+        pastpapercompletion__pastpaper__in=pastpapers,
+        pastpapercompletion__is_complete=True,
+    )
     num_topics_completed = completed_topics.count()
     num_pastpapers_completed = completed_pastpapers.count()
     total_num_topics = topics.count()
-    total_num_pastpapers = examboard_completion.pastpapers.count()
+    total_num_pastpapers = pastpapers.count()
     topic_progress_percentage = (
         int(100 * num_topics_completed / total_num_topics)
         if total_num_topics > 0
@@ -148,9 +157,9 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
     context = {
         "qualifications": qualifications,
         "examboard": examboard,
-        "examboard_completion": examboard_completion,
         "is_examboard_in_my_subjects": is_examboard_in_my_subjects,
         "topics": topics,
+        "pastpapers": pastpapers,
         "completed_topics": completed_topics,
         "completed_pastpapers": completed_pastpapers,
         "num_topics_completed": num_topics_completed,
