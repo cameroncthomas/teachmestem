@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for pastpaper in examboard_completion.pastpapers %}
+        {% for pastpaper in pastpapers %}
             {% if pastpaper in completed_pastpapers %}  
                 {% include 'revision/snippets/complete_pastpaper_row.html' %}
             {% else %}
