@@ -58,11 +58,11 @@ def contact(request):
             send_mail(
                 subject=f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']} has sent a contact request",
                 message=f"""
-                    Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
-                    Email: {form.cleaned_data['email']}
+                    Name: {form.cleaned_data["first_name"]} {form.cleaned_data["last_name"]}
+                    Email: {form.cleaned_data["email"]}
                     Message:
                     
-                    {form.cleaned_data['text']}
+                    {form.cleaned_data["text"]}
                     
                     """,
                 from_email=None,
