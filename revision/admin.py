@@ -3,7 +3,6 @@ from django.contrib import admin
 from .models import (
     ContactUser,
     ExamBoard,
-    ExamBoardCompletion,
     PastPaper,
     PastPaperCompletion,
     Qualification,
@@ -70,15 +69,6 @@ class PastPaperCompletionAdmin(admin.ModelAdmin):
     ]
 
 
-class ExamBoardCompletionAdmin(admin.ModelAdmin):
-    list_display = [
-        "user",
-        "examboard",
-        "examboard__subject",
-        "examboard__subject__qualification",
-    ]
-
-
 class UserExamBoardAdmin(admin.ModelAdmin):
     list_display = [
         "user",
@@ -96,5 +86,4 @@ admin.site.register(Topic, TopicAdmin)
 admin.site.register(PastPaper, PastPaperAdmin)
 admin.site.register(TopicCompletion, TopicCompletionAdmin)
 admin.site.register(PastPaperCompletion, PastPaperCompletionAdmin)
-admin.site.register(ExamBoardCompletion, ExamBoardCompletionAdmin)
 admin.site.register(UserExamBoard, UserExamBoardAdmin)
