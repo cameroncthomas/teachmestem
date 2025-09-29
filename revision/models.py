@@ -128,62 +128,6 @@ class PastPaperCompletion(models.Model):
         return f"{self.pastpaper} past paper completion status"
 
 
-class ExamBoardCompletion(models.Model):
-    """Progress in exam board (in the topics and past papers)
-    for a given User and ExamBoard.
-    """
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    examboard = models.ForeignKey(ExamBoard, on_delete=models.CASCADE)
-
-    @property
-    def topics(self):
-        """Return all Topic instances for a given ExamBoard."""
-        return Topic.objects.filter(examboard=self.examboard)
-
-    @property
-    def pastpapers(self):
-        """Return all PastPaper instances for a given ExamBoard."""
-        return PastPaper.objects.filter(examboard=self.examboard)
-
-    @property
-    def completed_topics(self):
-        """Return all completed topics (as Topic instances)
-        for a given User and ExamBoard.
-        """
-        completed_topics_ids = TopicCompletion.objects.filter(
-            user=self.user, topic__examboard=self.examboard, is_complete=True
-        ).values("topic")
-        return Topic.objects.filter(id__in=completed_topics_ids)
-
-    @property
-    def completed_pastpapers(self):
-        """Return all completed past papers (as PastPaper instances)
-        for a given User and ExamBoard.
-        """
-        completed_pastpapers_ids = PastPaperCompletion.objects.filter(
-            user=self.user, pastpaper__examboard=self.examboard, is_complete=True
-        ).values("pastpaper")
-        return PastPaper.objects.filter(id__in=completed_pastpapers_ids)
-
-    @property
-    def is_examboard_in_my_subjects(self):
-        """Return True if ExamBoard has been added to 'My Subjects' by User and
-        False if not.
-        """
-        examboard_in_my_subjects = True
-        try:
-            UserExamBoard.objects.get(user=self.user, examboard=self.examboard)
-        except UserExamBoard.DoesNotExist:
-            examboard_in_my_subjects = False
-
-        return examboard_in_my_subjects
-
-    def __str__(self):
-        """Return a string representation of the model."""
-        return "ExamBoard completion summary"
-
-
 class UserExamBoard(models.Model):
     """An ExamBoard added to 'My Subjects' by User."""
 
