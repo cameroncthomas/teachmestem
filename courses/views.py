@@ -43,8 +43,8 @@ def courses_register(request, course_id):
                     Course date: {course.date}
                     Course instructor: {course.instructor}
                     Course price: £{course.price}
-                    Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
-                    Email: {form.cleaned_data['email']}
+                    Name: {form.cleaned_data["first_name"]} {form.cleaned_data["last_name"]} 
+                    Email: {form.cleaned_data["email"]}
                     """,
                 from_email=None,
                 recipient_list=[],

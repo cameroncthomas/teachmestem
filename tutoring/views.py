@@ -30,11 +30,11 @@ def tutoring_contact(request, tutor_id):
             send_mail(
                 subject=f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']} has requested tutoring!",
                 message=f"""Requested tutor: {tutor.name}
-                    Name: {form.cleaned_data['first_name']} {form.cleaned_data['last_name']} 
-                    Email: {form.cleaned_data['email']}
+                    Name: {form.cleaned_data["first_name"]} {form.cleaned_data["last_name"]} 
+                    Email: {form.cleaned_data["email"]}
                     Message:
                     
-                    {form.cleaned_data['message']}
+                    {form.cleaned_data["message"]}
                     
                     """,
                 from_email=None,
