@@ -1,7 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
-from revision.models import Qualification
 
 from .forms import CourseRegisterForm
 from .models import Course
@@ -9,7 +8,6 @@ from .models import Course
 
 def courses(request):
     """Show courses page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     courses = Course.objects.select_related(
         "instructor",
         "examboard",
@@ -17,7 +15,6 @@ def courses(request):
         "examboard__subject__qualification",
     ).order_by("date", "examboard__subject__name")
     context = {
-        "qualifications": qualifications,
         "courses": courses,
     }
     return render(request, "courses/courses.html", context)
@@ -25,7 +22,6 @@ def courses(request):
 
 def courses_register(request, course_id):
     """Show course registration page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     course = Course.objects.select_related(
         "examboard",
         "examboard__subject",
@@ -53,7 +49,6 @@ def courses_register(request, course_id):
             return redirect("courses:courses_register_success", course_id)
 
     context = {
-        "qualifications": qualifications,
         "course": course,
         "form": form,
     }
@@ -62,8 +57,4 @@ def courses_register(request, course_id):
 
 def courses_register_success(request, course_id):
     """Show course registration form success page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {
-        "qualifications": qualifications,
-    }
-    return render(request, "courses/courses_register_success.html", context)
+    return render(request, "courses/courses_register_success.html")

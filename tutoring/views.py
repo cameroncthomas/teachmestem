@@ -1,7 +1,6 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
-from revision.models import Qualification
 
 from .forms import TutoringContactForm
 from .models import Tutor
@@ -9,10 +8,8 @@ from .models import Tutor
 
 def tutoring(request):
     """Show tutoring page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     tutors = Tutor.objects.all()
     context = {
-        "qualifications": qualifications,
         "tutors": tutors,
     }
     return render(request, "tutoring/tutoring.html", context)
@@ -20,7 +17,6 @@ def tutoring(request):
 
 def tutoring_contact(request, tutor_id):
     """Show tutoring contact page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     tutor = Tutor.objects.get(id=tutor_id)
     if request.method != "POST":
         form = TutoringContactForm()
@@ -44,7 +40,6 @@ def tutoring_contact(request, tutor_id):
             return redirect("tutoring:tutoring_contact_sent", tutor_id)
 
     context = {
-        "qualifications": qualifications,
         "tutor": tutor,
         "form": form,
     }
@@ -53,6 +48,4 @@ def tutoring_contact(request, tutor_id):
 
 def tutoring_contact_sent(request, tutor_id):
     """Show tutoring contact form success page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {"qualifications": qualifications}
-    return render(request, "tutoring/tutoring_contact_sent.html", context)
+    return render(request, "tutoring/tutoring_contact_sent.html")

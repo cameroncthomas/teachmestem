@@ -20,34 +20,21 @@ from .models import (
 
 def index(request):
     """Home page for revision app."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {
-        "qualifications": qualifications,
-    }
-    return render(request, "revision/index.html", context)
+    return render(request, "revision/index.html")
 
 
 def privacy(request):
     """Show privacy page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {
-        "qualifications": qualifications,
-    }
-    return render(request, "revision/privacy.html", context)
+    return render(request, "revision/privacy.html")
 
 
 def terms(request):
     """Show terms page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {
-        "qualifications": qualifications,
-    }
-    return render(request, "revision/terms.html", context)
+    return render(request, "revision/terms.html")
 
 
 def contact(request):
     """Show contact page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
 
     if request.method != "POST":
         form = ContactForm()
@@ -71,7 +58,6 @@ def contact(request):
             return redirect("revision:contact_sent")
 
     context = {
-        "qualifications": qualifications,
         "form": form,
     }
     return render(request, "revision/contact.html", context)
@@ -79,21 +65,17 @@ def contact(request):
 
 def contact_sent(request):
     """Show contact form success page."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {"qualifications": qualifications}
-    return render(request, "revision/contact_sent.html", context)
+    return render(request, "revision/contact_sent.html")
 
 
 @login_required
 def qualification(request, qualification_slug):
     """Show all subjects (Subject instances) for a given qualification."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    qualification = qualifications.get(slug=qualification_slug)
+    qualification = Qualification.objects.get(slug=qualification_slug)
     subjects = Subject.objects.filter(qualification=qualification).order_by(
         "subject_number"
     )
     context = {
-        "qualifications": qualifications,
         "qualification": qualification,
         "subjects": subjects,
     }
@@ -103,11 +85,9 @@ def qualification(request, qualification_slug):
 @login_required
 def subject(request, qualification_slug, subject_id, subject_slug):
     """Show all exam boards (ExamBoard instances) for a given subject."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     subject = Subject.objects.select_related("qualification").get(id=subject_id)
     examboards = ExamBoard.objects.filter(subject=subject)
     context = {
-        "qualifications": qualifications,
         "subject": subject,
         "examboards": examboards,
     }
@@ -119,7 +99,6 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
     """Show all topics (Topic instances) and past papers (PastPaper instances) for a
     given ExamBoard instance.
     """
-    qualifications = Qualification.objects.order_by("qualification_number")
     examboard = ExamBoard.objects.select_related(
         "subject", "subject__qualification"
     ).get(id=examboard_id)
@@ -155,7 +134,6 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
         else 0
     )
     context = {
-        "qualifications": qualifications,
         "examboard": examboard,
         "is_examboard_in_my_subjects": is_examboard_in_my_subjects,
         "topics": topics,
@@ -183,12 +161,10 @@ def examboard(request, qualification_slug, subject_slug, examboard_id, examboard
 @login_required
 def my_subjects(request):
     """Show all exam boards (ExamBoard instances) added to 'My Subjects' by User."""
-    qualifications = Qualification.objects.order_by("qualification_number")
     my_subjects = UserExamBoard.objects.select_related(
         "examboard", "examboard__subject", "examboard__subject__qualification"
     ).filter(user=request.user)
     context = {
-        "qualifications": qualifications,
         "my_subjects": my_subjects,
     }
     return render(request, "revision/my_subjects.html", context)
@@ -197,11 +173,7 @@ def my_subjects(request):
 @login_required
 def my_account(request):
     """Show available options relating to account for logged in users."""
-    qualifications = Qualification.objects.order_by("qualification_number")
-    context = {
-        "qualifications": qualifications,
-    }
-    return render(request, "revision/my_account.html", context)
+    return render(request, "revision/my_account.html")
 
 
 @login_required
