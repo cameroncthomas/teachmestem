@@ -16,6 +16,7 @@ Including another URLconf
 """
 
 from allauth.account.decorators import secure_admin_login
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
@@ -29,3 +30,8 @@ urlpatterns = [
     path("courses/", include("courses.urls")),
     path("", include("revision.urls")),
 ]
+
+if settings.DEBUG:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns += debug_toolbar_urls()
