@@ -27,12 +27,13 @@ DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
 INSTALLED_APPS = [
-    # Whitenoise.
     "whitenoise.runserver_nostatic",
+    "debug_toolbar",
     # My apps.
     "revision",
     "courses",
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
