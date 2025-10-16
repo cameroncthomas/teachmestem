@@ -40,12 +40,14 @@ class qualificationViewTest(TestCase):
                 kwargs={"qualification_slug": qualification.slug},
             )
         )
-        self.assertRedirects(response, f"/accounts/login/?next=/{qualification.slug}/")
+        self.assertRedirects(
+            response, f"/accounts/login/?next=/revise/{qualification.slug}/"
+        )
 
     def test_view_url_exists_at_desired_location(self):
         self.client.login(username="jdoe137", password="password137")
         qualification = Qualification.objects.get(id=1)
-        response = self.client.get(f"/{qualification.slug}/")
+        response = self.client.get(f"/revise/{qualification.slug}/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(str(response.context["user"]), "jdoe137")
 
@@ -182,7 +184,7 @@ class subjectViewTest(TestCase):
         )
         self.assertRedirects(
             response,
-            f"/accounts/login/?next=/{qualification.slug}/{subject.id}/{subject.slug}/",
+            f"/accounts/login/?next=/revise/{qualification.slug}/{subject.id}/{subject.slug}/",
         )
 
     def test_view_url_exists_at_desired_location(self):
@@ -190,7 +192,7 @@ class subjectViewTest(TestCase):
         qualification = Qualification.objects.get(id=1)
         subject = Subject.objects.get(id=1)
         response = self.client.get(
-            f"/{qualification.slug}/{subject.id}/{subject.slug}/"
+            f"/revise/{qualification.slug}/{subject.id}/{subject.slug}/"
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(str(response.context["user"]), "jdoe137")
