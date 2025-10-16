@@ -1,5 +1,6 @@
-from home.models import ContactUser
 from django.test import TestCase
+
+from home.models import ContactUser
 
 
 class ContactUserModelTest(TestCase):
