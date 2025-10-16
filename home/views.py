@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
@@ -52,3 +53,9 @@ def contact(request):
 def contact_sent(request):
     """Show contact form success page."""
     return render(request, "revision/contact_sent.html")
+
+
+@login_required
+def my_account(request):
+    """Show available options relating to account for logged in users."""
+    return render(request, "revision/my_account.html")

@@ -119,12 +119,6 @@ def my_subjects(request):
 
 
 @login_required
-def my_account(request):
-    """Show available options relating to account for logged in users."""
-    return render(request, "revision/my_account.html")
-
-
-@login_required
 def add_examboard_to_my_subjects(request, examboard_id):
     """Add ExamBoard to 'My Subjects' (create UserExamBoard instance)."""
     if request.method != "POST":
