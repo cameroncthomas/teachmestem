@@ -26,6 +26,7 @@ admin.site.login = secure_admin_login(admin.site.login)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
+    path("", include("home.urls")),
     path("tutoring/", include("tutoring.urls")),
     path("courses/", include("courses.urls")),
     path("", include("revision.urls")),
