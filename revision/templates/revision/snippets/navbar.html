@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="navbar navbar-dark-color navbar-expand-md mb-4 shadow-lg sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'revision:index' %}">
+        <a class="navbar-brand" href="{% url 'home:index' %}">
             <img 
                 alt="Home Page - Teach Me STEM"
                 src="{% static 'images/logo.svg' %}"
@@ -26,7 +26,7 @@
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                         role="button"
-                        href="{% url 'revision:index' %}">Revise</a>
+                        href="{% url 'home:index' %}">Revise</a>
                     <ul class="dropdown-menu">
                         {% for qualification in qualifications %}
                             <li>
@@ -69,7 +69,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-md-0"> 
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{% url 'revision:my_account' %}">
+                        <a href="{% url 'home:my_account' %}">
                             <img 
                                 alt="person icon"
                                 src="{% static 'images/person.svg' %}"
