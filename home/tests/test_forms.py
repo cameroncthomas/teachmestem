@@ -1,11 +1,10 @@
 from django import forms
 from django.test import TestCase
 
-from revision.forms import ContactForm
+from home.forms import ContactForm
 
 
 class ContactFormTest(TestCase):
-
     def test_form_has_expected_fields(self):
         form = ContactForm()
         expected_fields = {"first_name", "last_name", "email", "text", "captcha"}
