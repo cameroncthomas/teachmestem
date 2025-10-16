@@ -42,7 +42,7 @@ def contact(request):
                 from_email=None,
                 recipient_list=[],
             )
-            return redirect("revision:contact_sent")
+            return redirect("home:contact_sent")
 
     context = {
         "form": form,
