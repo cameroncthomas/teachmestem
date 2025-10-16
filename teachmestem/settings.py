@@ -170,7 +170,7 @@ ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = "phone_number"
 ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_FORMS = {"signup": "revision.forms.RevisionSignupForm"}
+ACCOUNT_FORMS = {"signup": "home.forms.RevisionSignupForm"}
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE") != "False"
