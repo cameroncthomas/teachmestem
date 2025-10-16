@@ -29,7 +29,7 @@ urlpatterns = [
     path("", include("home.urls")),
     path("tutoring/", include("tutoring.urls")),
     path("courses/", include("courses.urls")),
-    path("", include("revision.urls")),
+    path("revise/", include("revision.urls")),
 ]
 
 if settings.DEBUG:
