@@ -6,40 +6,12 @@ from . import views
 
 app_name = "revision"
 urlpatterns = [
-    # Home page.
-    path("", views.index, name="index"),
-    # Page that shows privacy info.
-    path(
-        "privacy/",
-        views.privacy,
-        name="privacy",
-    ),
-    # Page that shows terms info.
-    path(
-        "terms/",
-        views.terms,
-        name="terms",
-    ),
-    # Page that shows contact info and form.
-    path(
-        "contact/",
-        views.contact,
-        name="contact",
-    ),
-    # Page that shows contact form success message.
-    path(
-        "contact/sent/",
-        views.contact_sent,
-        name="contact_sent",
-    ),
     # Page that shows 'My Subjects' for logged in users.
     path(
         "my-subjects/",
         views.my_subjects,
         name="my_subjects",
     ),
-    # Page that shows options relating to account for logged in users.
-    path("my-account/", views.my_account, name="my_account"),
     # Page that shows subjects for a given qualification.
     path(
         "<slug:qualification_slug>/",
