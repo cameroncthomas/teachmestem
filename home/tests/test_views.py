@@ -25,7 +25,7 @@ class indexViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("home:index"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "revision/index.html")
+        self.assertTemplateUsed(response, "home/index.html")
 
     def test_lists_all_qualifications(self):
         response = self.client.get(reverse("home:index"))
@@ -66,7 +66,7 @@ class privacyViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("home:privacy"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "revision/privacy.html")
+        self.assertTemplateUsed(response, "home/privacy.html")
 
     def test_lists_all_qualifications(self):
         response = self.client.get(reverse("home:privacy"))
@@ -107,7 +107,7 @@ class termsViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("home:terms"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "revision/terms.html")
+        self.assertTemplateUsed(response, "home/terms.html")
 
     def test_lists_all_qualifications(self):
         response = self.client.get(reverse("home:terms"))
@@ -148,7 +148,7 @@ class contactViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("home:contact"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "revision/contact.html")
+        self.assertTemplateUsed(response, "home/contact.html")
 
     def test_lists_all_qualifications(self):
         response = self.client.get(reverse("home:contact"))
@@ -189,7 +189,7 @@ class contact_sentViewTest(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse("home:contact_sent"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "revision/contact_sent.html")
+        self.assertTemplateUsed(response, "home/contact_sent.html")
 
     def test_lists_all_qualifications(self):
         response = self.client.get(reverse("home:contact_sent"))
