@@ -7,17 +7,17 @@ from .forms import ContactForm
 
 def index(request):
     """Home page for revision app."""
-    return render(request, "revision/index.html")
+    return render(request, "home/index.html")
 
 
 def privacy(request):
     """Show privacy page."""
-    return render(request, "revision/privacy.html")
+    return render(request, "home/privacy.html")
 
 
 def terms(request):
     """Show terms page."""
-    return render(request, "revision/terms.html")
+    return render(request, "home/terms.html")
 
 
 def contact(request):
@@ -47,15 +47,15 @@ def contact(request):
     context = {
         "form": form,
     }
-    return render(request, "revision/contact.html", context)
+    return render(request, "home/contact.html", context)
 
 
 def contact_sent(request):
     """Show contact form success page."""
-    return render(request, "revision/contact_sent.html")
+    return render(request, "home/contact_sent.html")
 
 
 @login_required
 def my_account(request):
     """Show available options relating to account for logged in users."""
-    return render(request, "revision/my_account.html")
+    return render(request, "home/my_account.html")
