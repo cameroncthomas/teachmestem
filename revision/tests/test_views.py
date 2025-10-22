@@ -232,6 +232,47 @@ class SubjectViewTest(TestCase):
         self.assertEqual(str(response.context["user"]), "jdoe137")
         self.assertTemplateUsed(response, "revision/subject.html")
 
+    def test_lists_all_qualifications(self):
+        self.client.login(username="jdoe137", password="password137")
+        qualification = Qualification.objects.get(id=1)
+        subject = Subject.objects.get(id=1)
+        response = self.client.get(
+            reverse(
+                "revision:subject",
+                kwargs={
+                    "qualification_slug": qualification.slug,
+                    "subject_id": subject.id,
+                    "subject_slug": subject.slug,
+                },
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue("qualifications" in response.context)
+        self.assertEqual(len(response.context["qualifications"]), 5)
+
+    def test_qualifications_ordered_by_qualification_number(self):
+        self.client.login(username="jdoe137", password="password137")
+        qualification = Qualification.objects.get(id=1)
+        subject = Subject.objects.get(id=1)
+        response = self.client.get(
+            reverse(
+                "revision:subject",
+                kwargs={
+                    "qualification_slug": qualification.slug,
+                    "subject_id": subject.id,
+                    "subject_slug": subject.slug,
+                },
+            )
+        )
+        expected_qualification_order = sorted(
+            Qualification.objects.all(), key=lambda q: q.qualification_number
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue("qualifications" in response.context)
+        self.assertQuerySetEqual(
+            response.context["qualifications"], expected_qualification_order
+        )
+
     def test_lists_all_examboards(self):
         self.client.login(username="jdoe137", password="password137")
         qualification = Qualification.objects.get(id=1)
