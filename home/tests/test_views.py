@@ -4,7 +4,7 @@ from django.urls import reverse
 from revision.models import Qualification
 
 
-class indexViewTest(TestCase):
+class IndexViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
@@ -45,7 +45,7 @@ class indexViewTest(TestCase):
         )
 
 
-class privacyViewTest(TestCase):
+class PrivacyViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
@@ -86,7 +86,7 @@ class privacyViewTest(TestCase):
         )
 
 
-class termsViewTest(TestCase):
+class TermsViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
@@ -127,7 +127,7 @@ class termsViewTest(TestCase):
         )
 
 
-class contactViewTest(TestCase):
+class ContactViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
@@ -168,7 +168,7 @@ class contactViewTest(TestCase):
         )
 
 
-class contact_sentViewTest(TestCase):
+class ContactSentViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5

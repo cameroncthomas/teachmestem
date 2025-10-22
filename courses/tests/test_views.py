@@ -8,7 +8,7 @@ from courses.models import Course
 from revision.models import ExamBoard, Qualification, Subject
 
 
-class coursesViewTest(TestCase):
+class CoursesViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5

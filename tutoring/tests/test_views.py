@@ -6,8 +6,7 @@ from revision.models import Qualification
 from tutoring.models import Tutor
 
 
-class tutoringViewTest(TestCase):
-
+class TutoringViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5

@@ -7,7 +7,7 @@ from revision.models import ExamBoard, Qualification, Subject
 User = get_user_model()
 
 
-class qualificationViewTest(TestCase):
+class QualificationViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
@@ -141,7 +141,7 @@ class qualificationViewTest(TestCase):
         self.assertQuerySetEqual(response.context["subjects"], expected_subject_order)
 
 
-class subjectViewTest(TestCase):
+class SubjectViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         number_of_qualifications = 5
