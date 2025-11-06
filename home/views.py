@@ -59,3 +59,8 @@ def contact_sent(request):
 def my_account(request):
     """Show available options relating to account for logged in users."""
     return render(request, "home/my_account.html")
+
+
+def pricing(request):
+    """Show pricing page."""
+    return render(request, "home/pricing.html")
