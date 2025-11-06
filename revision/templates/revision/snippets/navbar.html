@@ -65,6 +65,12 @@
                         href="{% url 'tutoring:tutoring' %}">
                         Tutoring</a>                                    
                 </li>
+                <li class="nav-item px-1">
+                    <a 
+                        class="nav-link link-body-emphasis"
+                        href="{% url 'home:pricing' %}">
+                        Pricing</a>                                    
+                </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-md-0"> 
                 {% if user.is_authenticated %}
