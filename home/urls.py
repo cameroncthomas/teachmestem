@@ -34,4 +34,6 @@ urlpatterns = [
     ),
     # Page that shows options relating to account for logged in users.
     path("my-account/", views.my_account, name="my_account"),
+    # Page that shows pricing info.
+    path("pricing/", views.pricing, name="pricing"),
 ]
