@@ -198,4 +198,26 @@
             </div>
         </div>
     </div>
+    <div class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <img
+                    class="card-img-top mb-4"
+                    alt="question mark"
+                    src="{% static 'images/questionmark.svg' %}"
+                    width="150"
+                    height="150">
+            </div>
+            <h1 class="text-center mb-5 fw-bold">...Questions?</h1>
+            <h5 class="d-flex justify-content-center">
+                Have any questions? Don't hesitate to contact us below!
+            </h5>
+            <div class="d-flex justify-content-center pt-4 pb-2">
+                <a
+                    href="{% url 'home:contact' %}"
+                    class="btn btn-primary-landing btn-lg mt-3 rounded-pill border-0 px-4 py-3 mx-2">Contact us
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock content_2 %}
